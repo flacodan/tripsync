@@ -15,8 +15,6 @@ export class User extends Model {
 
 User.init(
   {
-    // category_id as foreign key from Category
-
     user_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -28,7 +26,7 @@ User.init(
       allowNull: false,
     },
     password: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(80),
       allowNull: false,
     },
   },
@@ -53,7 +51,7 @@ Trip.init(
       primaryKey: true,
     },
     trip_name: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(80),
       allowNull: false,
     },
     trip_start: {
@@ -75,6 +73,107 @@ Trip.init(
   }
 );
 
+export class To_do extends Model {
+  [util.inspect.custom]() {
+    return this.toJSON();
+  }
+}
+
+To_do.init(
+  {
+    to_do_id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    to_do_name: {
+      type: DataTypes.STRING(60),
+      allowNull: false,
+    },
+    to_do_complete: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+  },
+  {
+    modelName: "to_do",
+    sequelize: db,
+    timestamps: false,
+  }
+);
+
+export class Pin extends Model {
+  [util.inspect.custom]() {
+    return this.toJSON();
+  }
+}
+
+Pin.init(
+  {
+    pin_id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    pin_name: {
+      type: DataTypes.STRING(60),
+      allowNull: false,
+    },
+    pin_coords: {
+      type: DataTypes.STRING(40),
+      allowNull: false,
+    },
+    pin_note: {
+      type: DataTypes.BOOLEAN,
+    },
+  },
+  {
+    modelName: "pin",
+    sequelize: db,
+    timestamps: false,
+  }
+);
+
+export class Note extends Model {
+  [util.inspect.custom]() {
+    return this.toJSON();
+  }
+}
+
+Note.init(
+  {
+    note_id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    note_text: {
+      type: DataTypes.STRING,
+    },
+    pin_id: {
+      type: DataTypes.INTEGER,
+    },
+  },
+  {
+    modelName: "note",
+    sequelize: db,
+    timestamps: false,
+  }
+);
+
 //TABLE RELATIONSHIPS
-Trip.hasMany(User, { foreignKey: "category_id" });
-User.belongsTo(Trip, { foreignKey: "category_id" });
+User.belongsToMany(Trip, { through: "TripUser" });
+Trip.belongsToMany(User, { through: "TripUser" });
+//This (above) will automatically create a TripUser table with foreign keys to Trip and User.
+
+User.hasMany(To_do, { foreignKey: "user_id" });
+To_do.belongsTo(User, { foreignKey: "user_id" });
+
+Trip.hasMany(Pin, { foreignKey: "trip_id" });
+Pin.belongsTo(Trip, { foreignKey: "trip_id" });
+
+Trip.hasMany(To_do, { foreignKey: "trip_id" });
+To_do.belongsTo(Trip, { foreignKey: "trip_id" });
+
+Trip.hasMany(Note, { foreignKey: "trip_id" });
+Note.belongsTo(Trip, { foreignKey: "trip_id" });
