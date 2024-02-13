@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "initdb": "dropdb --if-exists tripsync && createdb tripsync",
-    "seed": "seed/seed.js",
+    "seed": "node seed/seed.js",
     "dev": "node server/server.js",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",

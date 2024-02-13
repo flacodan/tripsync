@@ -1,7 +1,7 @@
 import express from "express";
 import ViteExpress from "vite-express";
 import { Sequelize, Op } from "sequelize";
-import { Note, Trip } from "../models/model.js";
+import { User, To_do, Pin, Note, Trip } from "../models/model.js";
 
 const port = 3000;
 const app = express();

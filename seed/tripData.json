@@ -1,0 +1,26 @@
+[
+    {
+        "trip_name": "beach trip",
+        "trip_start": "2022-07-01",
+        "trip_code": "H4T7Y5",
+        "trip_complete": true
+    },
+    {
+        "trip_name": "mountain trip",
+        "trip_start": "2022-08-01",
+        "trip_code": "H4T7Y6",
+        "trip_complete": false
+    },
+    {
+        "trip_name": "lake trip",
+        "trip_start": "2022-09-01",
+        "trip_code": "H4T7Y7",
+        "trip_complete": false
+    },
+    {
+        "trip_name": "city trip",
+        "trip_start": "2022-10-01",
+        "trip_code": "H4T7Y8",
+        "trip_complete": false
+    }
+]
