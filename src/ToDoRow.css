@@ -1,0 +1,15 @@
+.row-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px; 
+    gap: 180px;
+    border: 1px solid black; 
+    border-radius: 10px;
+    font-size: 30px; /* Adjust the value as needed */
+}
+
+.trip{
+    margin-right: 30px;
+}
