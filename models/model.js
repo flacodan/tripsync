@@ -162,9 +162,9 @@ Note.init(
 );
 
 //TABLE RELATIONSHIPS
-User.belongsToMany(Trip, { through: "TripUser" });
-Trip.belongsToMany(User, { through: "TripUser" });
-//This (above) will automatically create a TripUser table with foreign keys to Trip and User.
+User.belongsToMany(Trip, { through: "Trip_user" });
+Trip.belongsToMany(User, { through: "Trip_user" });
+//This (above) will automatically create a Trip_user table with foreign keys to Trip and User.
 
 User.hasMany(To_do, { foreignKey: "user_id" });
 To_do.belongsTo(User, { foreignKey: "user_id" });
