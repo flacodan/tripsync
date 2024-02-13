@@ -1,0 +1,26 @@
+[
+    {
+        "pin_name": "Beach",
+        "pin_coords": "(40.3400097, -111.8019759)",
+        "is_pin_note": true,
+        "trip_id": 1
+    },
+    {
+        "pin_name": "Mountain",
+        "pin_coords": "(40.3400097, -111.8019759)",
+        "is_pin_note": false,
+        "trip_id": 1
+    },
+    {
+        "pin_name": "Lake",
+        "pin_coords": "(40.3400097, -111.8019759)",
+        "is_pin_note": false,
+        "trip_id": 1
+    },
+    {
+        "pin_name": "City",
+        "pin_coords": "(40.3400097, -111.8019759)",
+        "is_pin_note": false,
+        "trip_id": 1
+    }
+]

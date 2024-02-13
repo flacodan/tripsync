@@ -1,5 +1,8 @@
-import { User, Goal, Preferences, db } from "../models/model.js";
-import sampleData from "../data/sampleData.json" assert { type: "json" };
+import { User, Trip, To_do, Pin, Note, db } from "../models/model.js";
+import tripData from "./tripData.json" assert { type: "json" };
+import todoData from "./todoData.json" assert { type: "json" };
+import pinData from "./pinData.json" assert { type: "json" };
+import noteData from "./noteData.json" assert { type: "json" };
 
 console.log("Syncing database...");
 await db.sync({ force: true });
@@ -14,41 +17,78 @@ for (let i = 0; i < 10; i++) {
 
 const usersInDB = await Promise.all(usersToCreate);
 
-const goalsInDB = await Promise.all(
-  sampleData.map((goal) => {
+const tripsInDB = await Promise.all(
+  tripData.map((trip) => {
     // Not every record has dates and can't pass null to Date.parse, so we check here
-    const due_date = goal.due_date ? new Date(Date.parse(goal.due_date)) : null;
-    const complete_date = goal.complete_date
-      ? new Date(Date.parse(goal.complete_date))
+    const trip_start = trip.trip_start
+      ? new Date(Date.parse(trip.trip_start))
       : null;
 
-    const {
-      title,
-      description,
-      category,
-      percent,
-      time_est,
-      complete,
-      priority,
-      user_id,
-    } = goal;
+    const { trip_name, trip_code, trip_complete } = trip;
 
-    const newGoal = Goal.create({
-      title,
-      description,
-      category,
-      percent,
-      time_est,
-      due_date,
-      complete,
-      complete_date,
-      priority,
-      user_id, //usersInDB[0].userID,
+    const newTrip = Trip.create({
+      trip_name,
+      trip_start,
+      trip_code,
+      trip_complete,
     });
 
-    return newGoal;
+    return newTrip;
   })
 );
 
+const todosInDB = await Promise.all(
+  todoData.map((todo) => {
+    const { to_do_name, to_do_complete, user_id, trip_id } = todo;
+
+    const newTodo = To_do.create({
+      to_do_name,
+      to_do_complete,
+      user_id,
+      trip_id,
+    });
+
+    return newTodo;
+  })
+);
+
+const pinInDB = await Promise.all(
+  pinData.map((pin) => {
+    const { pin_name, pin_coords, is_pin_note, trip_id } = pin;
+
+    const newPin = Pin.create({
+      pin_name,
+      pin_coords,
+      is_pin_note,
+      trip_id,
+    });
+
+    return newPin;
+  })
+);
+
+const notesInDB = await Promise.all(
+  noteData.map((note) => {
+    const { note_text, pin_id, trip_id } = note;
+
+    const newNote = Note.create({
+      note_text,
+      pin_id,
+      trip_id,
+    });
+
+    return newNote;
+  })
+);
+
+// Create Association table associations :)
+const aTrip = await Trip.findByPk(1);
+await aTrip.addUser(1);
+await aTrip.addUser(2);
+
+const bTrip = await Trip.findByPk(1);
+await bTrip.addUser(1);
+
 await db.close();
+
 console.log("Finished seeding database!");

@@ -1,0 +1,26 @@
+[
+    {
+        "to_do_name": "Pack sunscreen",
+        "to_do_complete": true,
+        "user_id": 1,
+        "trip_id": 1
+    },
+    {
+        "to_do_name": "Make dinner Reservations",
+        "to_do_complete": false,
+        "user_id": 1,
+        "trip_id": 1
+    },
+    {
+        "to_do_name": "Pack towel",
+        "to_do_complete": true,
+        "user_id": null,
+        "trip_id": 1
+    },
+    {
+        "to_do_name": "Bring ice chest",
+        "to_do_complete": false,
+        "user_id": null,
+        "trip_id": 1
+    }
+]

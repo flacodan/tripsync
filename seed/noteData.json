@@ -1,0 +1,22 @@
+[
+    {
+        "note_text": "This is a note about the beach",
+        "pin_id": 1,
+        "trip_id": 1
+    },
+    {
+        "note_text": "This is a note about the mountain",
+        "pin_id": null,
+        "trip_id": 1
+    },
+    {
+        "note_text": "This is a note about the lake",
+        "pin_id": null,
+        "trip_id": 1
+    },
+    {
+        "note_text": "This is a note about the city",
+        "pin_id": null,
+        "trip_id": 1
+    }
+]
