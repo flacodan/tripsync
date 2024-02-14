@@ -22,5 +22,29 @@
         "to_do_complete": false,
         "user_id": null,
         "trip_id": 1
+    },
+    {
+        "to_do_name": "Stop at maverik",
+        "to_do_complete": false,
+        "user_id": null,
+        "trip_id": 2
+    },
+    {
+        "to_do_name": "Buy red vines",
+        "to_do_complete": false,
+        "user_id": null,
+        "trip_id": 2
+    },
+    {
+        "to_do_name": "Take map reading course",
+        "to_do_complete": false,
+        "user_id": null,
+        "trip_id": 5
+    },
+    {
+        "to_do_name": "Buy Tums",
+        "to_do_complete": false,
+        "user_id": null,
+        "trip_id": 6
     }
 ]
