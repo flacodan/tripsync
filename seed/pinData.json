@@ -22,5 +22,23 @@
         "pin_coords": "(40.3400097, -111.8019759)",
         "is_pin_note": false,
         "trip_id": 1
+    },
+    {
+        "pin_name": "Cheese factory",
+        "pin_coords": "(45.483938167506025, -123.8445119920711)",
+        "is_pin_note": false,
+        "trip_id": 4
+    },
+    {
+        "pin_name": "Crater Grimaldi",
+        "pin_coords": "(34.1808, 118.3090)",
+        "is_pin_note": false,
+        "trip_id": 5
+    },
+    {
+        "pin_name": "Pin factory",
+        "pin_coords": "(45.825335171349835, -74.13417671035562)",
+        "is_pin_note": true,
+        "trip_id": 2
     }
 ]
