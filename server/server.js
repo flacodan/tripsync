@@ -11,7 +11,10 @@ app.use(express.urlencoded({ extended: false }));
 ViteExpress.config({ printViteDevServerHost: true });
 
 app.get('/open-to-do', async (req, res) => {
-  
+  const todo = await To_do.findAll({
+    where: { to_do_complete: false }
+  })
+  res.send(todo);
 })
 
 ViteExpress.listen(app, port, () => {
