@@ -27,25 +27,29 @@ body {
   max-height: 100%;
 }
 .appName {
+  font-family: "Poppins", sans-serif;
+  color: #2b334a;
   position: absolute;
   height: 2.85%;
   width: 8.2%;
-  top: 5.5%;
+  top: 4.5%;
   left: 6.26%;
-  font-size: var(--font-size-41xl);
+  font-size: 30px;
   font-weight: 900;
-  color: var(--color-darkslategray-200);
   display: inline-block;
   z-index: 2;
 }
 .home1,
 .to-do1,
 .trips1 {
+  font-family: "Roboto", sans-serif;
   position: absolute;
   top: 5.5%;
   left: 65.8%;
   font-weight: 500;
   z-index: 2;
+  color: #2b334a;
+  font-size: 20px;
 }
 .to-do1,
 .trips1 {
@@ -62,7 +66,7 @@ body {
   left: 0;
   background-color: rgba(241, 119, 59, 0.42);
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25) inset;
-  width: 100%;
+  width: 1950px ;
   height: 125px;
   z-index:1;
 }
@@ -71,45 +75,17 @@ body {
   position: absolute;
   top: 15px;
   left: 20px;
-  /* width: 171px;
-  height: 185px; */
   object-fit: cover;
   z-index: 2;
   max-height: 100px;
 
 }
-/* .settings-2-icon,
-.user-2-icon {
-  position: absolute;
-  top: 47px;
-  left: 21px;
-  width: 171px;
-  height: 185px;
-  object-fit: cover;
-  z-index: 2;
-}
-.settings-2-icon,
-.user-2-icon {
-  top: 100px;
-  left: 320px;
-  width: 74px;
-  height: 78px;
-  mix-blend-mode: normal;
-}
-.user-2-icon {
-  top: 110px;
-  left: 300px;
-  width: 60px;
-  height: 63px;
-} */
 
 .settings-2-icon {
   position: absolute;
   top: 5%;
   left: 1800px;
-  /* width: 74px;
-  height: 78px; */
-  max-height: 30px;
+  max-height: 35px;
   object-fit: cover;
   z-index: 3;
 }
@@ -117,8 +93,6 @@ body {
   position: absolute;
   top: 5%;
   left: 1700px;
-  /* width: 60px;
-  height: 63px; */
   max-height: 30px;
   object-fit: cover;
   z-index: 3;
@@ -128,14 +102,20 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 3354px;
+  width: 1950px;
   height: 279px;
 }
 .navbar {
-  width: 3354px;
+  width: 1950px;
   height: 3194px;
   text-align: left;
   font-size: var(--font-size-29xl);
   color: var(--color-darkslategray-100);
   font-family: var(--font-inter);
+}
+
+.poppins-bold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }
