@@ -12,20 +12,41 @@ export default function ToDo(){
     useEffect(() => {
         axios.get('/open-to-do')
         .then((response) => {
-            // console.log(response.data)
             let todoArr = []
+            console.log(response.data)
             for (let i = 0; i < response.data.length; i++) {
-                todoArr.push(response.data[i].to_do_name)
+                console.log(response.data[i].trip.trip_name)
+                todoArr.push({
+                    to_do_name: response.data[i].to_do_name,
+                    trip_name: response.data[i].trip.trip_name
+                })
             }
             // console.log(todoArr)
             setTodoName(todoArr)
-            console.log(todoName)
+            // console.log(todoName)
         })
         .catch((error) => {
-            console.log('yeeeeeep, error') 
-            console.log(error)
+            console.log('yeeeeeep, error')
         })
     }, [])
+
+
+// didnt need (evan)
+    // useEffect(() => {
+    //     axios.get('/to-do-trip-name')
+    //     .then((response) => {
+    //         console.log(response.data)
+    //         let tripObj = {}
+    //         for (let i = 0; i < response.data.length; i++) {
+    //             tripObj[response.data[i].trip_id] = response.data[i].trip_name
+    //         }
+    //         console.log(tripObj)
+    //         setTripName(tripObj)
+    //     })
+    //     .catch((error) => {
+    //         console.log('yeeeeeep, error') 
+    //     })
+    // }, [])
 
     return (
         <> 
@@ -45,7 +66,7 @@ export default function ToDo(){
             <body>
                 { todoName.map((todo) => {
                     return (<ToDoRow
-                        todoName = {todo}
+                        todo = {todo}
                     />)
                 })
                 }
