@@ -22,5 +22,23 @@
         "trip_start": "2022-10-01",
         "trip_code": "H4T7Y8",
         "trip_complete": false
+    },
+    {
+        "trip_name": "The moon",
+        "trip_start": "2023-12-01",
+        "trip_code": "H4T7Y9",
+        "trip_complete": true
+    },
+    {
+        "trip_name": "Epic Poconos Skiing",
+        "trip_start": "2024-5-21",
+        "trip_code": "H4T7YA",
+        "trip_complete": false
+    },
+    {
+        "trip_name": "World's largest ball of foil",
+        "trip_start": "2023-06-11",
+        "trip_code": "H4T7YB",
+        "trip_complete": true
     }
 ]

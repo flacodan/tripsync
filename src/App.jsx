@@ -18,7 +18,7 @@ function App() {
                 <NavLink className="links" to="/trips">Trips</NavLink>
               </li>
               <li>
-                <NavLink className="links" to="/past-trips"></NavLink>
+                <NavLink className="links" to="/past-trips">past</NavLink>
               </li>
         </ul>
       </header>
