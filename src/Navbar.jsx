@@ -1,19 +1,31 @@
-import "./App.css";
+import "./Navbar.css";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import TSLogo from '../public/appImages/TSLogo.png';
+import TSLogo from '/appImages/TSLogo.png';
+import Hamburger from './assets/hamburger.svg';
 
 const NavBar = () => {
+
+  const [showNavbar, setShowNavbar] = useState(false)
+  
+  const handleShowNavbar = () => {
+    setShowNavbar(!showNavbar)
+  }
+  
   return (
-    <nav className="navbar">
+    <nav className="navbar tab-content">
       <div className="navContainer">
         <div>
           <img src={TSLogo} alt="Logo" className="logo"/>
         </div>
         <div className="appName">TripSync</div>
-        <div className="nav-elements">
+        <div className="menu-icon-container" onClick={handleShowNavbar}>
+          <img src={Hamburger} alt='Hamburger menu' className="menu-icon" />
+        </div>
+        <div className={`nav-elements  ${showNavbar && 'active'}`}>
           <ul>
               <li>
-                <NavLink className="Home" to="/home">Home</NavLink>
+                <NavLink className="links" to="/home">Home</NavLink>
               </li>
               <li>
                 <NavLink className="links" to="/to-do">To-Do</NavLink>
@@ -24,6 +36,26 @@ const NavBar = () => {
               <li>
                 <NavLink className="links" to="/past-trips">past</NavLink>
               </li>
+              <li>
+                <NavLink className="links" to="/settings">
+                  <img
+                    className="settings-2-icon"
+                    loading="eager"
+                    alt="settings icon"
+                    src="../public/appImages/settings.png"
+                  />
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="links" to="/user">
+                  <img
+                    className="user-2-icon"
+                    loading="eager"
+                    alt="user icon"
+                    src="../public/appImages/user.png"
+                  />
+                </NavLink>
+              </li>
             </ul>
         </div>
       </div>
@@ -32,31 +64,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
-
-{/* <div className="navbar">
-      <img className="navbar-child" alt="" />
-      <div className="appName">TripSync</div>
-      <div className="home1">{`Home `}</div>
-      <div className="to-do1">To-Do</div>
-      <div className="trips1">Trips</div>
-        <img
-          className="user-2-icon"
-          loading="eager"
-          alt="user icon"
-          src="../public/appImages/user.png"
-        />
-        <img
-          className="settings-2-icon"
-          loading="eager"
-          alt="settings icon"
-          src="../public/appImages/settings.png"
-        />
-      <section className="frame-container">
-        <div className="tab-content" />
-        <img 
-        className="logo" 
-        src="../public/appImages/TSLogo.png" 
-        alt="logo" />
-      </section>
-    </div> */}
