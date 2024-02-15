@@ -1,8 +1,40 @@
 import "./App.css";
+import { NavLink } from "react-router-dom";
+import TSLogo from '../public/appImages/TSLogo.png';
 
 const NavBar = () => {
   return (
-    <div className="navbar">
+    <nav className="navbar">
+      <div className="navContainer">
+        <div>
+          <img src={TSLogo} alt="Logo" className="logo"/>
+        </div>
+        <div className="appName">TripSync</div>
+        <div className="nav-elements">
+          <ul>
+              <li>
+                <NavLink className="Home" to="/home">Home</NavLink>
+              </li>
+              <li>
+                <NavLink className="links" to="/to-do">To-Do</NavLink>
+              </li>
+              <li>
+                <NavLink className="links" to="/trips">Trips</NavLink>
+              </li>
+              <li>
+                <NavLink className="links" to="/past-trips">past</NavLink>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default NavBar;
+
+
+{/* <div className="navbar">
       <img className="navbar-child" alt="" />
       <div className="appName">TripSync</div>
       <div className="home1">{`Home `}</div>
@@ -27,8 +59,4 @@ const NavBar = () => {
         src="../public/appImages/TSLogo.png" 
         alt="logo" />
       </section>
-    </div>
-  );
-};
-
-export default NavBar;
+    </div> */}

@@ -1,4 +1,4 @@
-import "./Table.css";
+// import "./Table.css";
 
 const Table = () => {
   return (
