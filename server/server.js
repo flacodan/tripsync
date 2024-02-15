@@ -19,8 +19,29 @@ app.get('/open-to-do', async (req, res) => {
       where: { trip_complete: false }
     }]
   });
+  console.log(todo);
   res.send(todo);
 });
+
+app.put('/done-task', async (req, res) => {
+  console.log(req.body)
+  await To_do.update(
+    { to_do_complete: true },
+    { where: { to_do_id: req.body.todoId } }
+  );
+
+  const todo = await To_do.findAll({
+    where: { to_do_complete: false },
+    include: [{
+      model: Trip,
+      required: true,
+      where: { trip_complete: false }
+    }]
+  });
+
+  res.send(todo);
+
+})
 
 // didnt need (evan)
 // app.get('/to-do-trip-name', async (req, res) => {

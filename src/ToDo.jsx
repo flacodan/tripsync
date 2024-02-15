@@ -7,6 +7,7 @@ import axios from 'axios'
 export default function ToDo(){
 
     const [todoName, setTodoName] = useState([])
+    
 
 
     useEffect(() => {
@@ -15,20 +16,21 @@ export default function ToDo(){
             let todoArr = []
             console.log(response.data)
             for (let i = 0; i < response.data.length; i++) {
-                console.log(response.data[i].trip.trip_name)
+                // console.log(response.data[i].trip.trip_name)
                 todoArr.push({
                     to_do_name: response.data[i].to_do_name,
-                    trip_name: response.data[i].trip.trip_name
+                    trip_name: response.data[i].trip.trip_name,
+                    to_do_id: response.data[i].to_do_id
                 })
             }
             // console.log(todoArr)
             setTodoName(todoArr)
-            // console.log(todoName)
         })
         .catch((error) => {
             console.log('yeeeeeep, error')
         })
     }, [])
+    // console.log(todoName)
 
 
 // didnt need (evan)
@@ -50,14 +52,18 @@ export default function ToDo(){
 
     return (
         <> 
-            <div className="dropdown">
-                <button className="dropbtn">Filter by Trip</button>
-                <div className="dropdown-options">
-                    <a href="#">OBX</a>
-                    <a href="#">Boston</a>
-                    <a href="#">SLC</a>
-                </div>
-            </div>
+            { todoName.map((todo) => {
+                console.log(todo)
+                return (
+                    <div className="dropdown">
+                        <button className="dropbtn">Filter by Trip</button>
+                        <div className="dropdown-options">
+                            <a href="#">{ todo.trip_name }</a>
+                        </div>
+                    </div>
+                )
+            })
+            }
 
             <div className="header-container">
                 <div>Task</div>
@@ -67,6 +73,8 @@ export default function ToDo(){
                 { todoName.map((todo) => {
                     return (<ToDoRow
                         todo = {todo}
+                        todoName = {todoName}
+                        setTodoName = {setTodoName}
                     />)
                 })
                 }
