@@ -86,7 +86,7 @@ const aTrip = await Trip.findByPk(1);
 await aTrip.addUser(1);
 await aTrip.addUser(2);
 
-const bTrip = await Trip.findByPk(1);
+const bTrip = await Trip.findByPk(2);
 await bTrip.addUser(1);
 
 await db.close();

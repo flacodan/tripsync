@@ -1,4 +1,4 @@
-.nav-links {
+/* .nav-links {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,4 +10,112 @@
   top: 0;
   left: 0;
   z-index: 10;
+} */
+body {
+  background-color: #ffbd6a;
+}
+.navbar_child {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.appName {
+  font-family: "Poppins", sans-serif;
+  color: #2b334a;
+  position: absolute;
+  height: 2.85%;
+  width: 8.2%;
+  top: 4.5%;
+  left: 6.26%;
+  font-size: 30px;
+  font-weight: 900;
+  display: inline-block;
+  z-index: 2;
+}
+.home1,
+.to-do1,
+.trips1 {
+  font-family: "Roboto", sans-serif;
+  position: absolute;
+  top: 5.5%;
+  left: 65.8%;
+  font-weight: 500;
+  z-index: 2;
+  color: #2b334a;
+  font-size: 20px;
+}
+.to-do1,
+.trips1 {
+  left: 74.06%;
+}
+.trips1 {
+  left: 82.17%;
+}
+
+ 
+.tab-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(241, 119, 59, 0.42);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25) inset;
+  width: 1950px ;
+  height: 125px;
+  z-index:1;
+}
+
+.logo {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  object-fit: cover;
+  z-index: 2;
+  max-height: 100px;
+
+}
+
+.settings-2-icon {
+  position: absolute;
+  top: 5%;
+  left: 1800px;
+  max-height: 35px;
+  object-fit: cover;
+  z-index: 3;
+}
+.user-2-icon {
+  position: absolute;
+  top: 5%;
+  left: 1700px;
+  max-height: 30px;
+  object-fit: cover;
+  z-index: 3;
+}
+
+.frame-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1950px;
+  height: 279px;
+}
+.navbar {
+  width: 1950px;
+  height: 3194px;
+  text-align: left;
+  font-size: var(--font-size-29xl);
+  color: var(--color-darkslategray-100);
+  font-family: var(--font-inter);
+}
+
+.poppins-bold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }

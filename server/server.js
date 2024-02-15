@@ -43,6 +43,28 @@ app.put('/done-task', async (req, res) => {
 
 })
 
+app.get("/api/getPastTrips", async (req, res) => {
+  try {
+    const response = await Trip.findAll({
+      where: { trip_complete: true },
+    });
+    res.status(200).send(response);
+  } catch (error) {
+    res.status(500).send("Internal server error");
+  }
+});
+
+app.delete("/api/deleteTrip/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const trip = await Trip.findByPk(id);
+    await trip.destroy();
+    res.sendStatus(200);
+  } catch (error) {
+    res.status(500).send("Error deleting trip");
+  }
+});
+
 // didnt need (evan)
 // app.get('/to-do-trip-name', async (req, res) => {
 //   const tripName = await Trip.findAll({
