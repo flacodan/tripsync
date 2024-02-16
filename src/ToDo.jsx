@@ -46,10 +46,10 @@ export default function ToDo(){
             </div>
 
             <div className="header-container">
-                <div>Task</div>
-                <div>Location</div>
+                <div className="task">Task</div>
+                <div className="location">Location</div>
             </div>
-            <body>
+            <div className='table-container'>
                 { filteredTodos.length > 0 ? (
                     filteredTodos.map((todo) => (
                         <ToDoRow
@@ -67,7 +67,7 @@ export default function ToDo(){
                         />
                     ))
                 )}
-            </body>
+            </div>
         </>
     )
 }

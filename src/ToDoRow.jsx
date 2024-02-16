@@ -22,7 +22,7 @@ export default function ToDoRow(props){
     return (
         <>
             <div className="row-container">
-                <button className="checkbox" onClick={doneTask}>x</button>
+                <button className="checkbox" onClick={doneTask}>X</button>
                 <div className="todo">{props.todo.to_do_name}</div>
                 <div className="trip">{props.todo.trip_name}</div>
             </div>

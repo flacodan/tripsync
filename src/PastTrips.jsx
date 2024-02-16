@@ -34,24 +34,30 @@ export default function PastTrips(){
 
     return (
         <>
+          <div className="header-container">
+                <div className="task">Trip</div>
+                <div className="location">Date</div>
+          </div>
+        <div className='top-container'>
         {pastTripList && (
-            <div id='trip-card-container' >
+            <div className='table-container'>
                 {pastTripList.map((trip) => (
                     <div
                         key={trip.trip_id}
                         id={trip.trip_id}
                         name={trip.trip_name}
-                        className='trip-card-row'
+                        className='row-container'
                         
                     >
-                        <div>{trip.trip_complete} Complete</div>
-                        <div><h3>{trip.trip_name}</h3></div>
-                        <div><h4>Date: {trip.trip_start}</h4></div>
-                        <button onClick={ () => handleDeleteTrip(trip.trip_id)}>Del</button>
+                        {/* <div>{trip.trip_complete} Complete</div> */}
+                        <div className='todo'>{trip.trip_name}</div>
+                        <div className='trip'>Date: {trip.trip_start}</div>
+                        <button className="checkbox" onClick={ () => handleDeleteTrip(trip.trip_id)}>X</button>
                     </div>
                 ))}
             </div>
         )}
+        </div>
         </>
     )
 }
