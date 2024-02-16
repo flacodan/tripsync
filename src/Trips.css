@@ -1,0 +1,113 @@
+.trip-name {
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+}
+
+.header-container1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px; 
+    gap: 180px;
+    border-radius: 10px;
+    font-size: 30px; /* Adjust the value as needed */
+    margin-top: 140px;
+}
+
+.todo {
+    position: absolute;
+    left: 40%;
+    transform: translateX(-50%);
+    width: 300px;
+    text-decoration: underline;
+    margin-bottom: 30px;
+    font-family: "Roboto", sans-serif;
+  }
+
+.owner{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    text-decoration: underline;
+    margin-bottom: 30px;
+    font-family: "Roboto", sans-serif;
+}
+
+.table-container1 {
+    margin-bottom: 120px;
+}
+
+.row-container1 {
+    display: flex;
+    flex-direction: row; 
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px; 
+    gap: 180px;
+    /* border: 1px solid black;  */
+    border-radius: 10px;
+    font-size: 30px; /* Adjust the value as needed */
+    background-color: rgba(241, 119, 59, 0.42);
+    height: 60px;
+    width: 35%;
+    margin: 0 auto; /* Center horizontally */
+    margin-bottom: 20px;
+    margin-left: calc(33.33% - (35% / 2)); /* Center on left 1/3 line */
+}
+
+.header-container2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px; 
+    gap: 180px;
+    border-radius: 10px;
+    font-size: 30px; /* Adjust the value as needed */
+    margin-top: 140px;
+}
+
+.pin {
+    position: absolute;
+    left: 65%;
+    transform: translateX(-50%);
+    width: 300px;
+    text-decoration: underline;
+    margin-bottom: 30px;
+    font-family: "Roboto", sans-serif;
+  }
+
+.place {
+    position: absolute;
+    left: 80%;
+    transform: translateX(-50%);
+    width: 300px;
+    text-decoration: underline;
+    margin-bottom: 30px;
+    font-family: "Roboto", sans-serif;
+}
+
+.table-container2 {
+    margin-bottom: 120px;
+}
+
+.row-container2 {
+    display: flex;
+    flex-direction: row; 
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px; 
+    gap: 180px;
+    /* border: 1px solid black;  */
+    border-radius: 10px;
+    font-size: 30px; /* Adjust the value as needed */
+    background-color: rgba(241, 119, 59, 0.42);
+    height: 60px;
+    width: 35%;
+    margin: 0 auto; /* Center horizontally */
+    margin-bottom: 20px;
+    margin-right: calc(33.33% - (35% / 2)); /* Center on left 1/3 line */
+}
