@@ -27,7 +27,6 @@ body {
 .navbar {
   height: 80px;
   position: relative;
-  padding:  0 15px;
   font-size: var(--font-size-29xl);
   color: var(--color-darkslategray-100);
   font-family: var(--font-inter);
@@ -43,7 +42,8 @@ body {
 }
 
 .menu-icon {
-  max-width: 100px;
+  max-width: 60px;
+  color: #2b334a;
   height: auto;
 }
 
@@ -56,17 +56,56 @@ body {
   display: inline-block;
 }
 
-.links {
+.tab-content {
+ background-color: rgba(241, 119, 59, 0.42);
+ box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25) inset;
+ height: 110px;
+}
+
+.links,
+.tripBtn {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   color: #2b334a;
   font-size: 20px;
 }
- 
-.tab-content {
-  background-color: rgba(241, 119, 59, 0.42);
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25) inset;
-  height: 125px;
+
+.tripBtn {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Show the dropdown menu on hover */
+.dropdownNav:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content .links {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content .links:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu when the dropdown button is clicked */
+.active .dropdown-content {
+  display: block;
 }
 
 .settings-2-icon {
@@ -89,28 +128,31 @@ body {
 }
 
 .nav-elements ul {
-  display: flex;
+  display: flex !important;
   justify-content: space-between;
+  align-items: center;
   list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-elements ul li:not(:last-child) {
-  margin-right: 60px;
+  margin-right: 30px;
 }
 
 .nav-elements ul a {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 400;
   color: #2f234f;
   text-decoration: none;
 }
 
 .nav-elements ul li:not(:last-child) {
-  margin-right: 60px;
+  margin-right: 30px;
 }
 
 .nav-elements ul a {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 400;
   color: #2f234f;
   text-decoration: none;
@@ -138,10 +180,14 @@ body {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 625px) {
   .menu-icon {
     display: block;
     cursor: pointer;
+  }
+
+  .menu-icon-container {
+    display: unset;
   }
 
   .nav-elements {

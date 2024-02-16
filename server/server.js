@@ -10,6 +10,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 ViteExpress.config({ printViteDevServerHost: true });
 
+app.get("/api/getUsersOpenTrips", async (req, res) => {
+  // const { user_id } = req.session.user;
+  const user_id = 1; // !!!!!!!!!!!!!!!!!!! Must CHANGE this after login is implemented !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  const user = await User.findByPk(user_id);
+  try {
+    const response = await user.getTrips({
+      where: {
+        trip_complete: false,
+      },
+    });
+    res.status(200).send(response);
+  } catch (error) {
+    res.status(500).send("Internal server error");
+  }
+});
+
 app.get("/open-to-do", async (req, res) => {});
 
 app.get("/api/getPastTrips", async (req, res) => {

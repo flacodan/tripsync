@@ -82,12 +82,15 @@ const notesInDB = await Promise.all(
 );
 
 // Create Association table associations :)
-const aTrip = await Trip.findByPk(1);
+const aTrip = await Trip.findByPk(2);
 await aTrip.addUser(1);
 await aTrip.addUser(2);
 
-const bTrip = await Trip.findByPk(2);
+const bTrip = await Trip.findByPk(1);
 await bTrip.addUser(1);
+
+const cTrip = await Trip.findByPk(3);
+await cTrip.addUser(1);
 
 await db.close();
 

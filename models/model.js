@@ -174,6 +174,6 @@ To_do.belongsTo(Trip, { foreignKey: "trip_id" });
 Trip.hasMany(Note, { foreignKey: "trip_id" });
 Note.belongsTo(Trip, { foreignKey: "trip_id" });
 
-User.belongsToMany(Trip, { through: "trip_user" });
-Trip.belongsToMany(User, { through: "trip_user" });
-//This (above) will automatically create a Trip_user table with foreign keys to Trip and User.
+User.belongsToMany(Trip, { through: "TripUser" });
+Trip.belongsToMany(User, { through: "TripUser" });
+//This (above) will automatically create a TripUser table with foreign keys to Trip and User.

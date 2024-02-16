@@ -1,16 +1,32 @@
 import "./Navbar.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import TSLogo from '/appImages/TSLogo.png';
-import Hamburger from './assets/hamburger.svg';
+// import Hamburger from './assets/hamburger.svg';
+import { HiOutlineMenu } from "react-icons/hi";
 
 const NavBar = () => {
 
-  const [showNavbar, setShowNavbar] = useState(false)
+  const [showNavbar, setShowNavbar] = useState(false);
+  const [trips, setTrips] = useState([]);
   
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar)
   }
+
+  useEffect(() => {
+    fetchTrips();
+  }, []);
+
+  const fetchTrips = async () => {
+    try {
+      const response = await fetch("/api/getUsersOpenTrips");
+      const data = await response.json();
+      setTrips(data); 
+    } catch (error) {
+      console.error("Error fetching trips:", error);
+    }
+  };
   
   return (
     <nav className="navbar tab-content">
@@ -20,7 +36,7 @@ const NavBar = () => {
         </div>
         <div className="appName">TripSync</div>
         <div className="menu-icon-container" onClick={handleShowNavbar}>
-          <img src={Hamburger} alt='Hamburger menu' className="menu-icon" />
+          <HiOutlineMenu className="menu-icon"/>
         </div>
         <div className={`nav-elements  ${showNavbar && 'active'}`}>
           <ul>
@@ -30,11 +46,18 @@ const NavBar = () => {
               <li>
                 <NavLink className="links" to="/to-do">To-Do</NavLink>
               </li>
-              <li>
-                <NavLink className="links" to="/trips">Trips</NavLink>
-              </li>
-              <li>
-                <NavLink className="links" to="/past-trips">past</NavLink>
+              <li className="dropdownNav">
+                <span className="tripBtn">Trips</span>
+                <div className="dropdown-content">
+                  {trips.length > 0 ? (
+                    trips.map((trip) => (
+                      <NavLink key={trip.trip_id} to={`/trip/${trip.trip_id}`} className="links">{trip.trip_name}</NavLink>
+                    ))
+                  ) : (
+                    <p>Loading trips...</p>
+                  )}
+                  <NavLink className="links" to="/past-trips">Past Trips</NavLink>
+                </div>
               </li>
               <li>
                 <NavLink className="links" to="/settings">
