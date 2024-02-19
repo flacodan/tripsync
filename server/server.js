@@ -44,6 +44,22 @@ app.post("/api/getTrip", async (req, res) => {
   }
 });
 
+app.get("/api/trips/:tripId/todos", async (req, res) => {
+  const tripId = req.params.tripId;
+  const todos = await getTodosForTrip(tripId);
+  res.json(todos);
+});
+
+async function getTodosForTrip(tripId) {
+  try {
+    const todos = await To_do.findAll({ where: { trip_id: tripId } });
+    console.log("server.getTodosForTrip.todolist " + JSON.stringify(todos));
+    return todos;
+  } catch (error) {
+    console.error("Error fetching todos for trip", tripId, error);
+  }
+}
+
 app.get("/open-to-do", async (req, res) => {
   const todo = await To_do.findAll({
     where: { to_do_complete: false },

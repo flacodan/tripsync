@@ -5,9 +5,9 @@ import axios from 'axios';
 
 export default function Trips(){
 
-    const [trip, setTrip] = useState([]);
     const { trip_id } = useParams(null);
-    console.log("Trips.trip_id: " + trip_id);
+    const [trip, setTrip] = useState([]);
+    const [todoList, setTodoList] = useState([]);
 
     useEffect(() => {
         const fetchTrip = async () => {
@@ -16,6 +16,12 @@ export default function Trips(){
                     const response = await axios.post('/api/getTrip', {trip_id: trip_id});
                     console.log(JSON.stringify(response.data));
                     setTrip(response.data[0]);
+
+                    if(response.data) {
+                        const todoResponse = await axios.get(`/api/trips/${trip_id}/todos`);
+                        const todoData = todoResponse.data;
+                        setTodoList(todoData);
+                    }
                 } catch (error) {
                     console.error('Error getting trip: ');
                 };
@@ -23,6 +29,16 @@ export default function Trips(){
         };
         fetchTrip();
     }, [trip_id]);
+
+    const todos = Array.isArray(todoList) ? (
+        todoList.map((todo) => (
+            <div key={todo.to_do_id} className="row-container1">
+                <button className="YN">{todo.to_do_complete}</button>
+                <div className=''>{todo.to_do_name}</div>
+                <div className="">Owner here</div>
+            </div>
+        ))
+    ) : null;
 
     return (
         <>
@@ -34,11 +50,7 @@ export default function Trips(){
                         <div className="owner">Owner</div>
                     </div>
                     <div className='table-container1'>
-                        <div className="row-container1">
-                            <button className="YN">X</button>
-                            <div className=''>To-Do here</div>
-                            <div className="">Owner here</div>
-                        </div>
+                        { todos }
                     </div>
                         <button className="to-do-btn">Add To-Do</button>
                 </div>
