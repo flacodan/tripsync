@@ -24,6 +24,12 @@
         "trip_id": 1
     },
     {
+        "to_do_name": "Bring ice chest2",
+        "to_do_complete": false,
+        "user_id": null,
+        "trip_id": 2
+    },
+    {
         "to_do_name": "Stop at maverik",
         "to_do_complete": false,
         "user_id": null,
