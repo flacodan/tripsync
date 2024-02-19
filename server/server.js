@@ -26,6 +26,24 @@ app.get("/api/getUsersOpenTrips", async (req, res) => {
   }
 });
 
+app.post("/api/getTrip", async (req, res) => {
+  // const { user_id } = req.session.user;
+  const { trip_id } = req.body;
+  console.log("server.getTrip.trip_id: " + trip_id);
+  const user_id = 1; // !!!!!!!!!!!!!!!!!!! Must CHANGE this after login is implemented !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  const user = await User.findByPk(user_id);
+  try {
+    const response = await user.getTrips({
+      where: {
+        trip_id: trip_id,
+      },
+    });
+    res.status(200).send(response);
+  } catch (error) {
+    res.status(500).send("Internal server error");
+  }
+});
+
 app.get("/open-to-do", async (req, res) => {
   const todo = await To_do.findAll({
     where: { to_do_complete: false },

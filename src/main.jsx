@@ -14,7 +14,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />} >
       <Route index element={<Home/>} />
       <Route path="/to-do" element={<ToDo/>} />
-      <Route path="/trips" element={<Trips/>} />
+      <Route path="/trips/:trip_id" element={<Trips/>} />
       <Route path="/past-trips" element={<PastTrips/>} />
     </Route>
   ),

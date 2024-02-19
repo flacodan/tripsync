@@ -1,11 +1,32 @@
-import './Trips.css'
+import './Trips.css';
+import { useParams } from 'react-router';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function Trips(){
 
+    const [trip, setTrip] = useState([]);
+    const { trip_id } = useParams(null);
+    console.log("Trips.trip_id: " + trip_id);
+
+    useEffect(() => {
+        const fetchTrip = async () => {
+            if(trip_id){
+                try {
+                    const response = await axios.post('/api/getTrip', {trip_id: trip_id});
+                    console.log(JSON.stringify(response.data));
+                    setTrip(response.data[0]);
+                } catch (error) {
+                    console.error('Error getting trip: ');
+                };
+            } else { console.log("No trip id"); };
+        };
+        fetchTrip();
+    }, [trip_id]);
 
     return (
         <>
-            <div className="trip-name">Boston</div>
+            <div className="trip-name">{trip.trip_name}</div>
             <div className="trip-lists">
                 <div className="trip-list">
                     <div className="header-container1">
