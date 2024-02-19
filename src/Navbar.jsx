@@ -2,7 +2,6 @@ import "./Navbar.css";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import TSLogo from '/appImages/TSLogo.png';
-// import Hamburger from './assets/hamburger.svg';
 import { HiOutlineMenu } from "react-icons/hi";
 
 const NavBar = () => {
