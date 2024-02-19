@@ -1,15 +1,49 @@
 .row-container {
     display: flex;
     flex-direction: row; 
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin: 10px; 
     gap: 180px;
-    border: 1px solid black; 
+    /* border: 1px solid black;  */
     border-radius: 10px;
     font-size: 30px; /* Adjust the value as needed */
+    background-color: rgba(241, 119, 59, 0.42);
 }
 
 .trip{
     margin-right: 30px;
+}
+
+.checkbox {
+    position: absolute;
+    left: 200px; /* Adjust the value as needed */
+    border-radius: 50%; /* Make the button a circle */
+    width: 45px; /* Increase the width to make the button larger */
+    height: 45px; /* Increase the height to make the button larger */
+    border: none; /* Remove the border */
+    font-size: 30px; /* Adjust the value as needed */
+}
+
+.row-container {
+    height: 60px;
+    width: 80%;
+    margin: 0 auto; /* Center horizontally */
+    margin-bottom: 20px;
+}
+
+.todo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    font-family: "Roboto", sans-serif;
+}
+
+.trip {
+    position: absolute;
+    left: 80%;
+    transform: translateX(-50%);
+    width: 250px;
+    font-family: "Roboto", sans-serif;
 }
