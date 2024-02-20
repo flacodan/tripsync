@@ -2,6 +2,7 @@ import './Trips.css';
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { ImCheckmark2, ImCheckboxChecked } from "react-icons/im";
 
 export default function Trips(){
 
@@ -14,7 +15,6 @@ export default function Trips(){
             if(trip_id){
                 try {
                     const response = await axios.post('/api/getTrip', {trip_id: trip_id});
-                    console.log(JSON.stringify(response.data));
                     setTrip(response.data[0]);
 
                     if(response.data) {
@@ -32,13 +32,33 @@ export default function Trips(){
 
     const todos = Array.isArray(todoList) ? (
         todoList.map((todo) => (
-            <div key={todo.to_do_id} className="row-container1">
-                <button className="YN">{todo.to_do_complete}</button>
+            <div key={todo.to_do_id} className="row-container1" onClick={() => clickTodoRow(todo.to_do_id)}>
+                <button 
+                    className="YN" 
+                    onClick={(event) => { clickTodoComplete(event, todo.to_do_id) }}
+                >
+                    { todo.to_do_complete ? <ImCheckboxChecked style={{color:"#6c757d", fontSize: '3rem'}} /> : <ImCheckmark2 style={{color:"#d9dadb", fontSize: '2rem'}} /> }
+                </button>
                 <div className=''>{todo.to_do_name}</div>
-                <div className="">Owner here</div>
+                <div className="">{todo.user_id}</div>
             </div>
         ))
     ) : null;
+
+    const clickTodoComplete = async (event, clickedId) => {    
+        event.stopPropagation();
+        // const prevTodoList = todoList;
+        const clickedTodoData = todoList.find((todo) => todo.to_do_id === clickedId);
+        const newComplete = !clickedTodoData.to_do_complete;
+        const mergedData = { ...clickedTodoData, to_do_complete: newComplete };
+        try {
+                console.log("Trips.clicktodocomplete; about to call api with data " + JSON.stringify(mergedData));
+                const response = await axios.put(`/api/todoUpdate/${clickedId}`, mergedData);
+                // fetchTodoData();  //might need to renew data loaded in State for todoList, create function to get it
+            } catch (error) {
+                console.error('Error updating data:', error);
+            }
+    };
 
     return (
         <>

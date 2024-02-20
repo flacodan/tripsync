@@ -60,6 +60,21 @@ async function getTodosForTrip(tripId) {
   }
 }
 
+app.put("/api/todoUpdate/:id", async (req, res) => {
+  // const { username, user_id } = req.session.user;
+  const { id } = req.params;
+  const { to_do_name, to_do_complete } = req.body;
+  console.log("server.putTodo id: " + id + " complete? " + to_do_complete);
+  await To_do.update(
+    {
+      to_do_name: to_do_name,
+      to_do_complete: to_do_complete,
+    },
+    { where: { to_do_id: id } }
+  );
+  res.sendStatus(200);
+});
+
 app.get("/open-to-do", async (req, res) => {
   const todo = await To_do.findAll({
     where: { to_do_complete: false },
