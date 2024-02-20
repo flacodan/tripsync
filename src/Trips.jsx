@@ -9,6 +9,7 @@ export default function Trips(){
     const { trip_id } = useParams(null);
     // console.log("Trips.trip_id: " + trip_id);
     const [pinName, setPinName] = useState([]);
+    const [modalIsShown, setModalIsShown] = useState(false)
 
     useEffect(() => {
         const fetchTrip = async () => {
@@ -43,6 +44,14 @@ export default function Trips(){
         });
     }, []);
 
+    function onPlaceClick() {
+        setModalIsShown(true);
+    }
+
+    function closeModal() {
+        setModalIsShown(false);
+    }
+
     return (
         <>
             <div className="trip-name">{trip.trip_name}</div>
@@ -74,7 +83,18 @@ export default function Trips(){
                         </div>
                             ))}
                     </div>
-                        <button className="place-btn">Add Place</button>
+                        <button onClick={onPlaceClick} className="place-btn">Add Place</button>
+                        { modalIsShown
+                ? <>
+                    <div className="modal-wrapper">
+                        <div className="modal-box">
+                            <button className="buttonX" onClick={closeModal}>x</button>
+                            <input placeholder="Pin name here..." className="input" type="text"></input>
+                        </div>
+                    </div>
+                </>
+                : null
+            }
                 </div>
                 <button className="notes-btn">Notes</button>
             </div>
