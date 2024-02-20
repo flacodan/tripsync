@@ -44,13 +44,13 @@
     {
         "to_do_name": "Take map reading course",
         "to_do_complete": false,
-        "user_id": null,
+        "user_id": 1,
         "trip_id": 5
     },
     {
         "to_do_name": "Buy Tums",
         "to_do_complete": false,
-        "user_id": null,
+        "user_id": 1,
         "trip_id": 6
     },
     {
@@ -68,7 +68,7 @@
     {
         "to_do_name": "order pizza",
         "to_do_complete": false,
-        "user_id": null,
+        "user_id": 1,
         "trip_id": 2
     },
     {

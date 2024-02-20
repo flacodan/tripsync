@@ -2,22 +2,32 @@ import './Trips.css';
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { ImCheckmark2, ImCheckboxChecked } from "react-icons/im";
 
 export default function Trips(){
-
+        
     const [trip, setTrip] = useState([]);
+    const [todoList, setTodoList] = useState([]);
     const { trip_id } = useParams(null);
-    // console.log("Trips.trip_id: " + trip_id);
     const [pinName, setPinName] = useState([]);
-    const [modalIsShown, setModalIsShown] = useState(false)
+    const [todoModalIsShown, setTodoModalIsShown] = useState(false);
+    const [modalIsShown, setModalIsShown] = useState(false);
+    const [todoData, setTodoData] = useState();
 
     useEffect(() => {
         const fetchTrip = async () => {
             if(trip_id){
                 try {
                     const response = await axios.post('/api/getTrip', {trip_id: trip_id});
-                    console.log(JSON.stringify(response.data));
                     setTrip(response.data[0]);
+
+                    if(response.data) {
+                        const todoResponse = await axios.get(`/api/trips/${trip_id}/todos`);
+                        const todoData = todoResponse.data;
+                        setTodoList(todoData);
+                        
+                        console.log("Trips.useEffect " + JSON.stringify(todoList[1]));
+                    }
                 } catch (error) {
                     console.error('Error getting trip: ');
                 };
@@ -44,95 +54,6 @@ export default function Trips(){
         });
     }, []);
 
-    function onPlaceClick() {
-        setModalIsShown(true);
-    }
-
-    function closeModal() {
-        setModalIsShown(false);
-    }
-
-    return (
-        <>
-            <div className="trip-name">{trip.trip_name}</div>
-            <div className="trip-lists">
-                <div className="trip-list">
-                    <div className="header-container1">
-                        <div className="todo2">To-Do</div>
-                        <div className="owner">Owner</div>
-                    </div>
-                    <div className='table-container1'>
-                        <div className="row-container1">
-                            <button className="YN">X</button>
-                            <div className=''>To-Do here</div>
-                            <div className="">Owner here</div>
-                        </div>
-                    </div>
-                        <button className="to-do-btn">Add To-Do</button>
-                </div>
-                <div className="trip-list">
-                    <div className="header-container2">
-                        <div className="pin">Pin</div>
-                        <div className="place">Place</div>
-                    </div>
-                    <div className='table-container2'>
-                            {pinName.map((name) => (
-                        <div className="row-container2">
-                                <div>Pin here</div>
-                                <div>{name}</div>
-                        </div>
-                            ))}
-                    </div>
-                        <button onClick={onPlaceClick} className="place-btn">Add Place</button>
-                        { modalIsShown
-                ? <>
-                    <div className="modal-wrapper">
-                        <div className="modal-box">
-                            <button className="buttonX" onClick={closeModal}>x</button>
-                            <input placeholder="Pin name here..." className="input" type="text"></input>
-                        </div>
-                    </div>
-                </>
-                : null
-            }
-                </div>
-                <button className="notes-btn">Notes</button>
-            </div>
-        </>
-    )
-}
-import './Trips.css';
-import { useParams } from 'react-router';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { ImCheckmark2, ImCheckboxChecked } from "react-icons/im";
-
-export default function Trips(){
-
-    const { trip_id } = useParams(null);
-    const [trip, setTrip] = useState([]);
-    const [todoList, setTodoList] = useState([]);
-
-    useEffect(() => {
-        const fetchTrip = async () => {
-            if(trip_id){
-                try {
-                    const response = await axios.post('/api/getTrip', {trip_id: trip_id});
-                    setTrip(response.data[0]);
-
-                    if(response.data) {
-                        const todoResponse = await axios.get(`/api/trips/${trip_id}/todos`);
-                        const todoData = todoResponse.data;
-                        setTodoList(todoData);
-                    }
-                } catch (error) {
-                    console.error('Error getting trip: ');
-                };
-            } else { console.log("No trip id"); };
-        };
-        fetchTrip();
-    }, [trip_id]);
-
     const todos = Array.isArray(todoList) ? (
         todoList.map((todo) => (
             <div key={todo.to_do_id} className="row-container1" onClick={() => clickTodoRow(todo.to_do_id)}>
@@ -142,11 +63,19 @@ export default function Trips(){
                 >
                     { todo.to_do_complete ? <ImCheckboxChecked style={{color:"#6c757d", fontSize: '3rem'}} /> : <ImCheckmark2 style={{color:"#d9dadb", fontSize: '2rem'}} /> }
                 </button>
-                <div className=''>{todo.to_do_name}</div>
-                <div className="">{todo.user_id}</div>
+                <div className="">{todo.to_do_name}</div>
+                {todo.username && (
+                <div className="">{todo.username}</div>
+                )}
             </div>
         ))
     ) : null;
+
+    const clickTodoRow = (clickedId) => {
+        const clickedTodoData = todoList.find((todoItem) => todoItem.to_do_id === clickedId);
+        setTodoData(clickedTodoData);
+        setTodoModalIsShown(true);
+    };
 
     const clickTodoComplete = async (event, clickedId) => {    
         event.stopPropagation();
@@ -163,6 +92,27 @@ export default function Trips(){
             }
     };
 
+    function onPlaceClick() {
+        setModalIsShown(true);
+    }
+
+    function closeTodoModal() {
+        setTodoModalIsShown(false);
+    }
+
+    function closeModal() {
+        setModalIsShown(false);
+    }
+    
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+
     return (
         <>
             <div className="trip-name">{trip.trip_name}</div>
@@ -175,20 +125,55 @@ export default function Trips(){
                     <div className='table-container1'>
                         { todos }
                     </div>
-                        <button className="to-do-btn">Add To-Do</button>
+                    <div>
+                        { todoModalIsShown
+                            ? <>
+                                <div className="modal-wrapper">
+                                    <div className="modal-box">
+                                        <button className="buttonX" onClick={closeTodoModal}>x</button>
+                                        <form action="/trips" method="post">
+                                            <ul>
+                                                <li className='formLI'>
+                                                    <label htmlFor="todo-name">To-do:</label>
+                                                    <input 
+                                                        type="text" 
+                                                        id="todo-name" 
+                                                        name="todo-name" 
+                                                        value={todoData.to_do_name}
+                                                        onChange={handleInputChange}
+                                                    />
+                                                </li>
+                                                <li className='formLI'>
+                                                    <label htmlFor="todo-owner">Owner: </label>
+                                                    <input type='text' id="todo-owner" name="todo-owner" value={todoData.username ? todoData.username : ""} />
+                                                    <button>I'll do it!</button>
+                                                </li>
+                                                <li className='formLI'>
+                                                    <button>Complete</button>
+                                                </li>
+                                            </ul>
+                                            <button type="submit">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </>
+                            : null
+                        }
+                    </div>
+                    <button className="to-do-btn">Add To-Do</button>
                 </div>
                 <div className="trip-list">
-                    <div className="header-container2">
-                        <div className="pin">Pin</div>
-                        <div className="place">Place</div>
-                    </div>
-                    <div className='table-container2'>
-                        <div className="row-container2">
-                            <div className=''>Pin here</div>
-                            <div className="">Place here</div>
-                        </div>
-                    </div>
-                        <button className="place-btn">Add Place</button>
+                    { modalIsShown
+                        ? <>
+                            <div className="modal-wrapper">
+                                <div className="modal-box">
+                                    <button className="buttonX" onClick={closeModal}>x</button>
+                                    <input placeholder="Pin name here..." className="input" type="text"></input>
+                                </div>
+                            </div>
+                        </>
+                        : null
+                    }
                 </div>
                 <button className="notes-btn">Notes</button>
             </div>

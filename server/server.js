@@ -29,7 +29,6 @@ app.get("/api/getUsersOpenTrips", async (req, res) => {
 app.post("/api/getTrip", async (req, res) => {
   // const { user_id } = req.session.user;
   const { trip_id } = req.body;
-  console.log("server.getTrip.trip_id: " + trip_id);
   const user_id = 1; // !!!!!!!!!!!!!!!!!!! Must CHANGE this after login is implemented !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   const user = await User.findByPk(user_id);
   try {
@@ -52,8 +51,18 @@ app.get("/api/trips/:tripId/todos", async (req, res) => {
 
 async function getTodosForTrip(tripId) {
   try {
-    const todos = await To_do.findAll({ where: { trip_id: tripId } });
-    console.log("server.getTodosForTrip.todolist " + JSON.stringify(todos));
+    const todos = await To_do.findAll({
+      where: { trip_id: tripId },
+      include: [
+        {
+          model: User,
+          attributes: [],
+        },
+      ],
+      attributes: {
+        include: [[Sequelize.literal('"user"."username"'), "username"]],
+      },
+    });
     return todos;
   } catch (error) {
     console.error("Error fetching todos for trip", tripId, error);
@@ -64,7 +73,6 @@ app.put("/api/todoUpdate/:id", async (req, res) => {
   // const { username, user_id } = req.session.user;
   const { id } = req.params;
   const { to_do_name, to_do_complete } = req.body;
-  console.log("server.putTodo id: " + id + " complete? " + to_do_complete);
   await To_do.update(
     {
       to_do_name: to_do_name,
@@ -86,7 +94,6 @@ app.get("/open-to-do", async (req, res) => {
       },
     ],
   });
-  console.log(todo);
   res.send(todo);
 });
 
@@ -142,8 +149,8 @@ app.delete("/api/deleteTrip/:id", async (req, res) => {
 // })
 
 app.get("/pin-place", async (req, res) => {
-  const { trip_id } = req.query 
-  console.log('this is my log' + JSON.stringify(trip_id));
+  const { trip_id } = req.query;
+  console.log("this is my log" + JSON.stringify(trip_id));
 
   const pins = await Pin.findAll({
     where: { trip_id: trip_id },
