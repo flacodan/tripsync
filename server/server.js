@@ -26,6 +26,24 @@ app.get("/api/getUsersOpenTrips", async (req, res) => {
   }
 });
 
+app.post("/api/getTrip", async (req, res) => {
+  // const { user_id } = req.session.user;
+  const { trip_id } = req.body;
+  console.log("server.getTrip.trip_id: " + trip_id);
+  const user_id = 1; // !!!!!!!!!!!!!!!!!!! Must CHANGE this after login is implemented !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  const user = await User.findByPk(user_id);
+  try {
+    const response = await user.getTrips({
+      where: {
+        trip_id: trip_id,
+      },
+    });
+    res.status(200).send(response);
+  } catch (error) {
+    res.status(500).send("Internal server error");
+  }
+});
+
 app.get("/open-to-do", async (req, res) => {
   const todo = await To_do.findAll({
     where: { to_do_complete: false },
@@ -98,6 +116,17 @@ app.post('/api/trips', async (req, res) => {
 //   })
 //   res.send(tripName);
 // })
+
+app.get("/pin-place", async (req, res) => {
+  const { trip_id } = req.query 
+  console.log('this is my log' + JSON.stringify(trip_id));
+
+  const pins = await Pin.findAll({
+    where: { trip_id: trip_id },
+  });
+  console.log(pins);
+  res.send(pins);
+});
 
 ViteExpress.listen(app, port, () => {
   console.log(`Server cruisin on http://localhost:${port}`);

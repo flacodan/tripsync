@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import TSLogo from '/appImages/TSLogo.png';
 import { HiOutlineMenu } from "react-icons/hi";
 
+
 const NavBar = () => {
 
   const [showNavbar, setShowNavbar] = useState(false);
@@ -50,7 +51,11 @@ const NavBar = () => {
                 <div className="dropdown-content">
                   {trips.length > 0 ? (
                     trips.map((trip) => (
-                      <NavLink key={trip.trip_id} to={`/trip/${trip.trip_id}`} className="links">{trip.trip_name}</NavLink>
+                      <NavLink 
+                        key={trip.trip_id} 
+                        to={ `/trips/${trip.trip_id}` }
+                        className="links">{trip.trip_name}
+                      </NavLink>
                     ))
                   ) : (
                     <p>Loading trips...</p>
