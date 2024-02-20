@@ -102,6 +102,13 @@ app.delete("/api/deleteTrip/:id", async (req, res) => {
   }
 });
 
+app.post('/api/trips', async (req, res) => {
+  
+  console.log('in server ' + req.body)
+  let newTrip = await Trip.create(req.body)
+  res.status(200).send(newTrip)
+})
+
 // didnt need (evan)
 // app.get('/to-do-trip-name', async (req, res) => {
 //   const tripName = await Trip.findAll({
@@ -122,5 +129,5 @@ app.get("/pin-place", async (req, res) => {
 });
 
 ViteExpress.listen(app, port, () => {
-  console.log(`Server is listening http://localhost:${port}`);
+  console.log(`Server cruisin on http://localhost:${port}`);
 });
