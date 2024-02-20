@@ -110,6 +110,17 @@ app.delete("/api/deleteTrip/:id", async (req, res) => {
 //   res.send(tripName);
 // })
 
+app.get("/pin-place", async (req, res) => {
+  const { trip_id } = req.query 
+  console.log('this is my log' + JSON.stringify(trip_id));
+
+  const pins = await Pin.findAll({
+    where: { trip_id: trip_id },
+  });
+  console.log(pins);
+  res.send(pins);
+});
+
 ViteExpress.listen(app, port, () => {
   console.log(`Server is listening http://localhost:${port}`);
 });
