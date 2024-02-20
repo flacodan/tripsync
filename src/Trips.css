@@ -39,7 +39,9 @@
 }
 
 .table-container1 {
-    margin-bottom: 120px;
+    margin-bottom: 10px;
+    height: 300px;
+    overflow: auto;
 }
 
 .row-container1 {
@@ -151,6 +153,10 @@
     border-radius: 10px;
     font-size: 30px; /* Adjust the value as needed */
     background-color: rgba(241, 119, 59, 0.42);
+}
+
+.formLI {
+    list-style-type: none;
 }
 
 .notes-btn {
