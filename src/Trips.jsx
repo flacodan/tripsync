@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ImCheckmark2, ImCheckboxChecked } from "react-icons/im";
+import Map from './Maps.jsx'
 
 export default function Trips(){
         
@@ -14,11 +15,13 @@ export default function Trips(){
     const [modalIsShown, setModalIsShown] = useState(false);
     const [todoData, setTodoData] = useState();
 
+
     useEffect(() => {
         const fetchTrip = async () => {
             if(trip_id){
                 try {
                     const response = await axios.post('/api/getTrip', {trip_id: trip_id});
+                    // console.log(JSON.stringify(response.data));
                     setTrip(response.data[0]);
 
                     if(response.data) {
@@ -39,7 +42,7 @@ export default function Trips(){
     useEffect(() => {
         axios.get('/pin-place', {params: {trip_id: trip_id}})
         .then((response) => {
-          console.log(response.data)
+        //   console.log(response.data)
           let pinNameArr = []
           for (let i = 0; i < response.data.length; i++) {
             // console.log(response.data[i].pin_name)
@@ -115,6 +118,9 @@ export default function Trips(){
 
     return (
         <>
+          <div>
+                    {<Map/>}
+                </div>
             <div className="trip-name">{trip.trip_name}</div>
             <div className="trip-lists">
                 <div className="trip-list">
@@ -161,19 +167,6 @@ export default function Trips(){
                         }
                     </div>
                     <button className="to-do-btn">Add To-Do</button>
-                </div>
-                <div className="trip-list">
-                    { modalIsShown
-                        ? <>
-                            <div className="modal-wrapper">
-                                <div className="modal-box">
-                                    <button className="buttonX" onClick={closeModal}>x</button>
-                                    <input placeholder="Pin name here..." className="input" type="text"></input>
-                                </div>
-                            </div>
-                        </>
-                        : null
-                    }
                 </div>
                 <button className="notes-btn">Notes</button>
             </div>

@@ -119,9 +119,13 @@ Pin.init(
       type: DataTypes.STRING(60),
       allowNull: false,
     },
-    pin_coords: {
-      type: DataTypes.STRING(40),
-      allowNull: false,
+    pin_long: {
+      type: DataTypes.STRING(60),
+      allowNull: true,
+    },
+    pin_lat: {
+      type: DataTypes.STRING(60),
+      allowNull: true,
     },
     is_pin_note: {
       type: DataTypes.BOOLEAN,

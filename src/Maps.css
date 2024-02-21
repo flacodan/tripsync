@@ -1,0 +1,10 @@
+.map-container {
+    margin: 0 auto;
+    margin-top: 800px;
+    width: 90%;
+    height: 800px;
+    z-index: 999;
+}
+
+
+
