@@ -112,14 +112,36 @@ app.delete("/api/deleteTrip/:id", async (req, res) => {
 
 app.get("/pin-place", async (req, res) => {
   const { trip_id } = req.query 
-  console.log('this is my log' + JSON.stringify(trip_id));
+  // console.log('this is my log' + JSON.stringify(trip_id));
 
   const pins = await Pin.findAll({
     where: { trip_id: trip_id },
   });
-  console.log(pins);
+  // console.log(pins);
   res.send(pins);
 });
+
+app.post("/coord", async (req, res) => {
+  const latLong = req.body;
+  console.log("this is my log!!!!!!!!!!!!!!!!!!!!!!!!!", latLong);
+  const newPin = await Pin.create({
+    pin_lat: latLong.newPlace.lat,
+    pin_long: latLong.newPlace.long,
+    pin_name: latLong.pinName,
+    trip_id: 1,
+  });
+  const donePin = await Pin.findAll({
+    where: { trip_id: 1 },
+  });
+res.send(donePin)
+})
+
+app.get("/pin-place", async (req, res) => {
+  const pins = await Pin.findAll({
+    where: { trip_id: 1 },
+  });
+  res.send(pins);
+})
 
 ViteExpress.listen(app, port, () => {
   console.log(`Server is listening http://localhost:${port}`);

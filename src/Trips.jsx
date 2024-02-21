@@ -2,6 +2,7 @@ import './Trips.css';
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Map from './Maps.jsx'
 
 export default function Trips(){
 
@@ -11,12 +12,13 @@ export default function Trips(){
     const [pinName, setPinName] = useState([]);
     const [modalIsShown, setModalIsShown] = useState(false)
 
+
     useEffect(() => {
         const fetchTrip = async () => {
             if(trip_id){
                 try {
                     const response = await axios.post('/api/getTrip', {trip_id: trip_id});
-                    console.log(JSON.stringify(response.data));
+                    // console.log(JSON.stringify(response.data));
                     setTrip(response.data[0]);
                 } catch (error) {
                     console.error('Error getting trip: ');
@@ -29,7 +31,7 @@ export default function Trips(){
     useEffect(() => {
         axios.get('/pin-place', {params: {trip_id: trip_id}})
         .then((response) => {
-          console.log(response.data)
+        //   console.log(response.data)
           let pinNameArr = []
           for (let i = 0; i < response.data.length; i++) {
             // console.log(response.data[i].pin_name)
@@ -54,6 +56,9 @@ export default function Trips(){
 
     return (
         <>
+          <div>
+                    {<Map/>}
+                </div>
             <div className="trip-name">{trip.trip_name}</div>
             <div className="trip-lists">
                 <div className="trip-list">
@@ -70,7 +75,7 @@ export default function Trips(){
                     </div>
                         <button className="to-do-btn">Add To-Do</button>
                 </div>
-                <div className="trip-list">
+                {/* <div className="trip-list">
                     <div className="header-container2">
                         <div className="pin">Pin</div>
                         <div className="place">Place</div>
@@ -95,7 +100,9 @@ export default function Trips(){
                 </>
                 : null
             }
-                </div>
+                </div> */}
+              
+
                 <button className="notes-btn">Notes</button>
             </div>
         </>
