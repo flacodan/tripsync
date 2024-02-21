@@ -3,16 +3,20 @@ import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ImCheckmark2, ImCheckboxChecked } from "react-icons/im";
+import ToDoModal from './ToDoModal';
 
 export default function Trips(){
         
+    const [currentUser, setCurrentUser] = useState(null);  // !!!!!!!! make this reflect logged in user !!!!!!!!!!!!!!!!
     const [trip, setTrip] = useState([]);
     const [todoList, setTodoList] = useState([]);
     const { trip_id } = useParams(null);
     const [pinName, setPinName] = useState([]);
     const [todoModalIsShown, setTodoModalIsShown] = useState(false);
-    const [modalIsShown, setModalIsShown] = useState(false);
+    const [notesModalIsShown, setNotesModalIsShown] = useState(false);
     const [todoData, setTodoData] = useState();
+    const [takeOwnership, setTakeOwnership] = useState(false);
+    const [isChecked, setIsChecked] = useState(todoData?.to_do_complete || false);
 
     useEffect(() => {
         const fetchTrip = async () => {
@@ -20,13 +24,11 @@ export default function Trips(){
                 try {
                     const response = await axios.post('/api/getTrip', {trip_id: trip_id});
                     setTrip(response.data[0]);
-
+                    
                     if(response.data) {
                         const todoResponse = await axios.get(`/api/trips/${trip_id}/todos`);
                         const todoData = todoResponse.data;
                         setTodoList(todoData);
-                        
-                        console.log("Trips.useEffect " + JSON.stringify(todoList[1]));
                     }
                 } catch (error) {
                     console.error('Error getting trip: ');
@@ -35,24 +37,36 @@ export default function Trips(){
         };
         fetchTrip();
     }, [trip_id]);
-
+    
     useEffect(() => {
         axios.get('/pin-place', {params: {trip_id: trip_id}})
         .then((response) => {
-          console.log(response.data)
-          let pinNameArr = []
-          for (let i = 0; i < response.data.length; i++) {
-            // console.log(response.data[i].pin_name)
-            pinNameArr.push(response.data[i].pin_name)
-          }
-        //   console.log(pinNameArr)
-        setPinName(pinNameArr)
-     
+            console.log(response.data)
+            let pinNameArr = []
+            for (let i = 0; i < response.data.length; i++) {
+                // console.log(response.data[i].pin_name)
+                pinNameArr.push(response.data[i].pin_name)
+            }
+            //   console.log(pinNameArr)
+            setPinName(pinNameArr)
+            
         })
         .catch(() => {
             console.log('yeeeeeep, errorp');
         });
     }, []);
+    
+    const handleToggleChange = () => { setIsChecked(prevChecked => !prevChecked); };
+    const handleTakeOwnership = () => { setCurrentUser("TestBob"); }; // Set the current user's name here
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const updatedTodoData = {
+          ...todoData,
+          username: takeOwnership ? currentUser : todoData.username
+        };
+        // call api and send updated data!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    };
 
     const todos = Array.isArray(todoList) ? (
         todoList.map((todo) => (
@@ -71,12 +85,13 @@ export default function Trips(){
         ))
     ) : null;
 
+    
     const clickTodoRow = (clickedId) => {
         const clickedTodoData = todoList.find((todoItem) => todoItem.to_do_id === clickedId);
         setTodoData(clickedTodoData);
         setTodoModalIsShown(true);
     };
-
+    
     const clickTodoComplete = async (event, clickedId) => {    
         event.stopPropagation();
         // const prevTodoList = todoList;
@@ -84,24 +99,25 @@ export default function Trips(){
         const newComplete = !clickedTodoData.to_do_complete;
         const mergedData = { ...clickedTodoData, to_do_complete: newComplete };
         try {
-                console.log("Trips.clicktodocomplete; about to call api with data " + JSON.stringify(mergedData));
-                const response = await axios.put(`/api/todoUpdate/${clickedId}`, mergedData);
-                // fetchTodoData();  //might need to renew data loaded in State for todoList, create function to get it
-            } catch (error) {
-                console.error('Error updating data:', error);
-            }
+            console.log("Trips.clicktodocomplete; about to call api with data " + JSON.stringify(mergedData));
+            const response = await axios.put(`/api/todoUpdate/${clickedId}`, mergedData);
+            // fetchTodoData();  //might need to renew data loaded in State for todoList, create function to get it
+        } catch (error) {
+            console.error('Error updating data:', error);
+        }
     };
-
+    
     function onPlaceClick() {
-        setModalIsShown(true);
+        setNotesModalIsShown(true);
     }
-
+    
     function closeTodoModal() {
+        setCurrentUser(null);
         setTodoModalIsShown(false);
     }
-
-    function closeModal() {
-        setModalIsShown(false);
+    
+    function closeNotesModal() {
+        setNotesModalIsShown(false);
     }
     
     const handleInputChange = (e) => {
@@ -111,7 +127,49 @@ export default function Trips(){
             [name]: value,
         }));
     };
-
+    
+    // const todoModal = (todoData != null) ? (
+    //     <div className="modal-wrapper">
+    //       <div className="modal-box">
+    //         <button className="buttonX" onClick={closeTodoModal}>x</button>
+    //         <form onSubmit={handleSubmit}>
+    //             <ul>
+    //                 <li className='formLI'>
+    //                 <label htmlFor="todo-name">To-do:</label>
+    //                 <input 
+    //                     type="text" 
+    //                     id="todo-name" 
+    //                     name="todo-name" 
+    //                     value={todoData.to_do_name || ''}
+    //                     onChange={handleInputChange}
+    //                 />
+    //                 </li>
+    //                 <li className='formLI'>
+    //                     <label>
+    //                     Owner: {currentUser || todoData.username || ""}
+    //                     </label>
+    //                     {!todoData.username && (
+    //                         <button onClick={handleTakeOwnership}>I'll do it!</button>
+    //                     )}
+    //                 </li>
+    //                 <li className='formLI'>
+    //                     <button 
+    //                         className='toggle-button' 
+    //                         onClick={handleToggleChange}
+    //                         type="button"
+    //                         >
+    //                         {isChecked ? 
+    //                         <ImCheckboxChecked style={{color:"#6c757d", fontSize: '3rem'}} /> 
+    //                         : <ImCheckmark2 style={{color:"#d9dadb", fontSize: '2rem'}} />
+    //                         }
+    //                     </button>
+    //                 </li>
+    //             </ul>
+    //             <button type="submit">Submit</button>
+    //         </form>
+    //       </div>
+    //     </div>
+    //   ) : null;
 
     return (
         <>
@@ -125,57 +183,30 @@ export default function Trips(){
                     <div className='table-container1'>
                         { todos }
                     </div>
-                    <div>
-                        { todoModalIsShown
-                            ? <>
-                                <div className="modal-wrapper">
-                                    <div className="modal-box">
-                                        <button className="buttonX" onClick={closeTodoModal}>x</button>
-                                        <form action="/trips" method="post">
-                                            <ul>
-                                                <li className='formLI'>
-                                                    <label htmlFor="todo-name">To-do:</label>
-                                                    <input 
-                                                        type="text" 
-                                                        id="todo-name" 
-                                                        name="todo-name" 
-                                                        value={todoData.to_do_name}
-                                                        onChange={handleInputChange}
-                                                    />
-                                                </li>
-                                                <li className='formLI'>
-                                                    <label htmlFor="todo-owner">Owner: </label>
-                                                    <input type='text' id="todo-owner" name="todo-owner" value={todoData.username ? todoData.username : ""} />
-                                                    <button>I'll do it!</button>
-                                                </li>
-                                                <li className='formLI'>
-                                                    <button>Complete</button>
-                                                </li>
-                                            </ul>
-                                            <button type="submit">Submit</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </>
-                            : null
-                        }
-                    </div>
-                    <button className="to-do-btn">Add To-Do</button>
+                    <button className="to-do-btn" onClick={() => setTodoModalIsShown(true)}>Add To-Do</button>
                 </div>
-                <div className="trip-list">
-                    { modalIsShown
-                        ? <>
-                            <div className="modal-wrapper">
-                                <div className="modal-box">
-                                    <button className="buttonX" onClick={closeModal}>x</button>
-                                    <input placeholder="Pin name here..." className="input" type="text"></input>
-                                </div>
+                <button className="notes-btn" onClick={() => setNotesModalIsShown(true)}>Notes</button>
+            </div>
+            
+            <div>
+                { notesModalIsShown
+                    ? <>
+                        <div className="modal-wrapper">
+                            <div className="modal-box">
+                                <button className="buttonX" onClick={closeNotesModal}>x</button>
+                                <input placeholder="Notes for this trip" className="input" type="text"></input>
                             </div>
-                        </>
-                        : null
-                    }
-                </div>
-                <button className="notes-btn">Notes</button>
+                        </div>
+                    </>
+                    : null
+                }
+            </div>
+            <div>
+                { todoModalIsShown && (
+                    <ToDoModal
+                    />
+                )
+                }
             </div>
         </>
     )

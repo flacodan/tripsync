@@ -133,6 +133,10 @@
     width: 50%;
 }
 
+.formLI {
+    list-style-type: none;
+}
+
 .place-btn {
     position: absolute;
     right: 5%;
@@ -145,7 +149,7 @@
 }
 
 .to-do-btn {
-    position: absolute;
+position: absolute;
     left: 28%;
     transform: translateX(-50%);
     width: 300px;
@@ -155,14 +159,10 @@
     background-color: rgba(241, 119, 59, 0.42);
 }
 
-.formLI {
-    list-style-type: none;
-}
-
 .notes-btn {
-    position: absolute;
+position: absolute;
     left: 50%;
-    margin-top: 40%;
+margin-top: 40%;
     transform: translateX(-50%);
     width: 300px;
     font-family: "Roboto", sans-serif;
