@@ -9,32 +9,29 @@
 .header-container1 {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
     margin: 10px; 
     gap: 180px;
     border-radius: 10px;
-    font-size: 30px; /* Adjust the value as needed */
+    font-size: 28px; /* Adjust the value as needed */
     margin-top: 140px;
 }
 
 .todo2 {
-    position: absolute;
-    left: 31%;
-    transform: translateX(-50%);
-    width: 300px;
+    display: flex;
+    flex-direction: row; 
+    justify-content: flex-s;
+    width: 40%;
     text-decoration: underline;
-    margin-bottom: 30px;
     font-family: "Roboto", sans-serif;
   }
 
 .owner{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px;
+    display: flex;
+    flex-direction: row; 
+    justify-content: flex-s;
+    width: 30%;
     text-decoration: underline;
-    margin-bottom: 30px;
     font-family: "Roboto", sans-serif;
 }
 
@@ -50,15 +47,15 @@
     justify-content: flex-start;
     align-items: center;
     margin: 10px; 
-    gap: 180px;
+    gap: 30px;
     /* border: 1px solid black;  */
     border-radius: 10px;
-    font-size: 30px; /* Adjust the value as needed */
+    font-size: 24px; /* Adjust the value as needed */
     background-color: rgba(241, 119, 59, 0.42);
-    height: 60px;
+    height: 40px;
     width: 90%;
     margin: 0 auto; /* Center horizontally */
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     margin-left: calc(25% - (35% / 2)); /* Center on left 1/3 line */
 }
 
@@ -116,13 +113,14 @@
     margin-right: calc(25% - (35% / 2)); /* Center on left 1/3 line */
 }
 
-.YN {
+.completeBtn {
     margin-left: 5%;
     border-radius: 50%; /* Make the button a circle */
-    width: 45px; /* Increase the width to make the button larger */
-    height: 45px; /* Increase the height to make the button larger */
+    width: 30px; /* Increase the width to make the button larger */
+    height: 30px; /* Increase the height to make the button larger */
     border: none; /* Remove the border */
-    font-size: 30px; /* Adjust the value as needed */
+    font-size: 24px; /* Adjust the value as needed */
+    background-color: transparent
 }
 
 .trip-lists {
@@ -133,43 +131,33 @@
     width: 50%;
 }
 
-.place-btn {
-    position: absolute;
-    right: 5%;
-    transform: translateX(-50%);
-    width: 300px;
-    font-family: "Roboto", sans-serif;
-    border-radius: 10px;
-    font-size: 30px; /* Adjust the value as needed */
-    background-color: rgba(241, 119, 59, 0.42);
-}
-
-.to-do-btn {
-    position: absolute;
-    left: 28%;
-    transform: translateX(-50%);
-    width: 300px;
-    font-family: "Roboto", sans-serif;
-    border-radius: 10px;
-    font-size: 30px; /* Adjust the value as needed */
-    background-color: rgba(241, 119, 59, 0.42);
-}
-
 .formLI {
     list-style-type: none;
 }
 
 .notes-btn {
     position: absolute;
-    left: 50%;
-    margin-top: 40%;
+    right: 5%;
     transform: translateX(-50%);
     width: 300px;
     font-family: "Roboto", sans-serif;
     border-radius: 10px;
-    font-size: 30px; /* Adjust the value as needed */
+    font-size: 24px; /* Adjust the value as needed */
     background-color: rgba(241, 119, 59, 0.42);
 }
+
+.to-do-btn {
+position: absolute;
+    left: 28%;
+    transform: translateX(-50%);
+    width: 300px;
+    font-family: "Roboto", sans-serif;
+    border-radius: 10px;
+    font-size: 24px; /* Adjust the value as needed */
+    background-color: rgba(241, 119, 59, 0.42);
+}
+
+
 
 .modal-wrapper {
     position: fixed;
