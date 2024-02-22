@@ -167,40 +167,33 @@ app.delete("/api/deleteTrip/:id", async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
-app.post('/api/trips', async (req, res) => {
-  
-  let newTrip = await Trip.create(req.body)
-  res.status(200).send(newTrip)
-})
-=======
 app.post("/api/trips", async (req, res) => {
-  console.log("in server " + req.body);
   let newTrip = await Trip.create(req.body);
   res.status(200).send(newTrip);
 });
->>>>>>> dh-todoModal
 
-app.post('/api/signUp', async (req, res) => {
+app.post("/api/signUp", async (req, res) => {
   // console.log('in server ' + JSON.stringify(req.body))
-  let newUser = await User.create(req.body)
-  res.status(200).send(newUser)
-})
+  let newUser = await User.create(req.body);
+  res.status(200).send(newUser);
+});
 
-app.post('/api/signIn', async (req, res) => {
+app.post("/api/signIn", async (req, res) => {
   const { username, password } = req.body;
-  console.log('in server ' + JSON.stringify(req.body))
-  let user = await User.findOne({where: {username: username, password: password}})
+  console.log("in server " + JSON.stringify(req.body));
+  let user = await User.findOne({
+    where: { username: username, password: password },
+  });
   if (user) {
     // Successful login
-    res.status(200).send(user)
-    console.log('Logged in successfully')
+    res.status(200).send(user);
+    console.log("Logged in successfully");
   } else {
-      // Failed login
-      res.send({success: false});
-      console.log('Invalid email or password');
+    // Failed login
+    res.send({ success: false });
+    console.log("Invalid email or password");
   }
-})
+});
 // didnt need (evan)
 // app.get('/to-do-trip-name', async (req, res) => {
 //   const tripName = await Trip.findAll({
@@ -210,7 +203,7 @@ app.post('/api/signIn', async (req, res) => {
 // })
 
 app.get("/pin-place", async (req, res) => {
-  const { trip_id } = req.query 
+  const { trip_id } = req.query;
   // console.log('this is my log' + JSON.stringify(trip_id));
 
   const pins = await Pin.findAll({
@@ -232,15 +225,15 @@ app.post("/coord", async (req, res) => {
   const donePin = await Pin.findAll({
     where: { trip_id: 1 },
   });
-res.send(donePin)
-})
+  res.send(donePin);
+});
 
 app.get("/pin-place", async (req, res) => {
   const pins = await Pin.findAll({
     where: { trip_id: 1 },
   });
   res.send(pins);
-})
+});
 
 ViteExpress.listen(app, port, () => {
   console.log(`Server cruisin on http://localhost:${port}`);

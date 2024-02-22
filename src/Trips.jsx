@@ -2,13 +2,10 @@ import './Trips.css';
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-<<<<<<< HEAD
 import { ImCheckmark2, ImCheckboxChecked } from "react-icons/im";
 import Map from './Maps.jsx'
-=======
 import { FiCircle, FiCheckCircle } from "react-icons/fi";
 import ToDoModal from './ToDoModal';
->>>>>>> dh-todoModal
 
 export default function Trips(){
         
@@ -45,7 +42,6 @@ export default function Trips(){
     useEffect(() => {
         axios.get('/pin-place', {params: {trip_id: trip_id}})
         .then((response) => {
-<<<<<<< HEAD
         //   console.log(response.data)
           let pinNameArr = []
           for (let i = 0; i < response.data.length; i++) {
@@ -55,17 +51,6 @@ export default function Trips(){
         //   console.log(pinNameArr)
         setPinName(pinNameArr)
      
-=======
-            console.log(response.data)
-            let pinNameArr = []
-            for (let i = 0; i < response.data.length; i++) {
-                // console.log(response.data[i].pin_name)
-                pinNameArr.push(response.data[i].pin_name)
-            }
-            //   console.log(pinNameArr)
-            setPinName(pinNameArr)
-            
->>>>>>> dh-todoModal
         })
         .catch(() => {
             console.log('yeeeeeep, errorp');
@@ -201,9 +186,6 @@ export default function Trips(){
                     </div>
                 <button className="notes-btn" onClick={() => setNotesModalIsShown(true)}>Notes</button>
                 </div>
-<<<<<<< HEAD
-                <button className="notes-btn">Notes</button>
-=======
             </div>
             
             <div>
@@ -228,7 +210,6 @@ export default function Trips(){
                         onSaveChanges={handleSaveChanges}
                     />
                 )}
->>>>>>> dh-todoModal
             </div>
         </>
     )
