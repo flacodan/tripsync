@@ -142,11 +142,30 @@ app.delete("/api/deleteTrip/:id", async (req, res) => {
 
 app.post('/api/trips', async (req, res) => {
   
-  console.log('in server ' + req.body)
   let newTrip = await Trip.create(req.body)
   res.status(200).send(newTrip)
 })
 
+app.post('/api/signUp', async (req, res) => {
+  // console.log('in server ' + JSON.stringify(req.body))
+  let newUser = await User.create(req.body)
+  res.status(200).send(newUser)
+})
+
+app.post('/api/signIn', async (req, res) => {
+  const { username, password } = req.body;
+  console.log('in server ' + JSON.stringify(req.body))
+  let user = await User.findOne({where: {username: username, password: password}})
+  if (user) {
+    // Successful login
+    res.status(200).send(user)
+    console.log('Logged in successfully')
+  } else {
+      // Failed login
+      res.send({success: false});
+      console.log('Invalid email or password');
+  }
+})
 // didnt need (evan)
 // app.get('/to-do-trip-name', async (req, res) => {
 //   const tripName = await Trip.findAll({

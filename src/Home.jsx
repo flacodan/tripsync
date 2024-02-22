@@ -35,17 +35,10 @@ function Home() {
 
     }
 
-    
-
     const map = useRef(null);
-
-   
-
 
     useEffect(() => {
     mapboxgl.accessToken = 'pk.eyJ1IjoidHJpcHN5bmMiLCJhIjoiY2xzdGloMGMwMWJtcjJpczNjdmx5ZmY2cyJ9.cjfI8_qhTfgfJty0E-iGGA';
-    
-        // if (map.current) return
         
         const map = new mapboxgl.Map({
         container: 'map', // container ID
