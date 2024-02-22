@@ -2,6 +2,7 @@ import './ToDoRow.css'
 import axios from 'axios'
 
 export default function ToDoRow(props) {
+
     async function doneTask(e) {
         e.preventDefault();
         let maBod = {
@@ -10,12 +11,13 @@ export default function ToDoRow(props) {
 
         axios.put('/done-task', maBod)
             .then((response) => {
+                console.log(response.data)
                 props.setTodoName(response.data);
                 console.log('glarg');
                 console.log(response.data);
                 console.log('blagg');
                 // Remove the row from the page
-                e.target.closest('.row-container').remove();
+                // e.target.closest('.row-container').remove();
             });
     }
 
