@@ -1,7 +1,7 @@
 .trip-name {
     display: flex;
     justify-content: center;
-    margin-top: 120px;
+    margin-top: 10px;
     font-size: 40px;
     font-family: "Roboto", sans-serif;
 }
@@ -11,34 +11,37 @@
     flex-direction: row;
     align-items: center;
     margin: 10px; 
-    gap: 180px;
+    gap: 10px;
     border-radius: 10px;
     font-size: 28px; /* Adjust the value as needed */
-    margin-top: 140px;
+    margin-top: 10px;
+    margin-left: calc(25% - (35% / 2)); /* Center on left 1/3 line */
+}
+
+.td-header {
+    display: flex;
+    flex-direction: row; 
+    justify-content: flex-s;
+    text-decoration: underline;
+    font-family: "Roboto", sans-serif;
 }
 
 .todo2 {
-    display: flex;
-    flex-direction: row; 
-    justify-content: flex-s;
     width: 40%;
-    text-decoration: underline;
-    font-family: "Roboto", sans-serif;
   }
 
 .owner{
-    display: flex;
-    flex-direction: row; 
-    justify-content: flex-s;
     width: 30%;
-    text-decoration: underline;
-    font-family: "Roboto", sans-serif;
 }
 
 .table-container1 {
     margin-bottom: 10px;
     height: 300px;
     overflow: auto;
+}
+
+.table-container2 {
+    margin-bottom: 10px;
 }
 
 .row-container1 {
@@ -89,10 +92,6 @@
     text-decoration: underline;
     margin-bottom: 30px;
     font-family: "Roboto", sans-serif;
-}
-
-.table-container2 {
-    margin-bottom: 120px;
 }
 
 .row-container2 {

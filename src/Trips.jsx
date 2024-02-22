@@ -156,15 +156,16 @@ export default function Trips(){
 
     return (
         <>
+        <div className="trip-name">{(trip.trip_name).toUpperCase()}</div>
           <div>
                     {<Map/>}
                 </div>
-            <div className="trip-name">{trip.trip_name}</div>
             <div className="trip-lists">
                 <div className="trip-list">
                     <div className="header-container1">
-                        <div className="todo2">To-Do</div>
-                        <div className="owner">Owner</div>
+                        <div className='td-header'>DONE</div>
+                        <div className="todo2 td-header">TO DO</div>
+                        <div className="owner td-header">OWNER</div>
                     </div>
                     <div className='table-container1'>
                         { todos }
@@ -179,7 +180,7 @@ export default function Trips(){
                 </div>
                 <div className='trip-list'>
                     <div className='header-container1'>
-                        <div>Notes</div>
+                        <div className='td-header'>NOTES</div>
                     </div>
                     <div className='table-container1'>
                         <p>Here there be notes</p>
