@@ -3,15 +3,36 @@ import { useRef, useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import mapboxgl from 'mapbox-gl';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
+
 
 function Home() {
+    // const MyComponent = () => {
+    //     const { id } = useParams();
+    //     // The `id` parameter will be the value of the `:id` parameter in the route path.
+    //     return <div>{id}</div>;
+    //   };
     const [isCreated, setIsCreated] = useState(false);
     const [tripName, setTripName] = useState('');
     const [tripDate, setTripDate] = useState('');
     const [tripCode, setTripCode] = useState('');
-    //do I need to set the default state of completion to false? lets assume yes
+    const [joinCode, setJoinCode] = useState('');
     const [tripComplete, setTripComplete] = useState(false);
     
+    const map = useRef(null);
+    
+    useEffect(() => {
+        mapboxgl.accessToken = 'pk.eyJ1IjoidHJpcHN5bmMiLCJhIjoiY2xzdGloMGMwMWJtcjJpczNjdmx5ZmY2cyJ9.cjfI8_qhTfgfJty0E-iGGA';
+        
+        const map = new mapboxgl.Map({
+            container: 'map', // container ID
+            style: 'mapbox://styles/mapbox/streets-v12', // style URL
+            center: [-74.5, 40], // starting position [lng, lat]
+            zoom: 1 // starting zoom
+            
+        });
+        
+    }, []);
     
     
     const handleSubmit = async (e) => {
@@ -35,21 +56,17 @@ function Home() {
 
     }
 
-    const map = useRef(null);
+    const handleJBC = async () => {
+        console.log(joinCode);
+        const response = await axios.post(`/api/addUserToTrip/${joinCode}`).then((response) => {
+        // const trip_id = response.data;
 
-    useEffect(() => {
-    mapboxgl.accessToken = 'pk.eyJ1IjoidHJpcHN5bmMiLCJhIjoiY2xzdGloMGMwMWJtcjJpczNjdmx5ZmY2cyJ9.cjfI8_qhTfgfJty0E-iGGA';
+        console.log('joined trip ' + response.data);
+    })
+    }
+
+
         
-        const map = new mapboxgl.Map({
-        container: 'map', // container ID
-        style: 'mapbox://styles/mapbox/streets-v12', // style URL
-        center: [-74.5, 40], // starting position [lng, lat]
-        zoom: 1 // starting zoom
-
-    });
-    
-    }, []);
-
     return (
         <div className='home-container'>
             <h2>Welcome username!</h2>
@@ -87,13 +104,13 @@ function Home() {
                 <div>
                     <h2>Join by code</h2>
                     <label for="inviteCode" >enter your invite code here:</label>
-                    <input id="inviteCode" type="text" />
-                    <button>Join Trip</button>
+                    <input value={joinCode} id="inviteCode" type="text" onChange={(e) => setJoinCode(e.target.value)}/>
+                    <button onClick={handleJBC}>Join Trip</button> 
+                    {/* <p>{tripCodeJoin}</p> */}
                 </div>
             </section>
         </div>
     )
 }
-
 
 export default Home;
