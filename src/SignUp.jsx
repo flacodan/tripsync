@@ -1,12 +1,14 @@
 import { React, useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const SignUp = () => {
     const [email, setEmail] = useState('');  
     const [password, setPassword] = useState('');
     const [signedUp, setSignedUp] = useState(false);
+    const navigate = useNavigate();
   
     const handleSubmit = async (e) => {
         e.preventDefault();  
@@ -20,6 +22,10 @@ const SignUp = () => {
         axios.post('/api/signUp', userBod)
         .then((response) => {
             console.log(response.data);
+            if (response.data) {
+                // setSignedUp(true);
+                navigate('/sign-in')
+            }
         })
         console.log('submitted');
     }

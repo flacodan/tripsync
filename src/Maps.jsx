@@ -9,7 +9,7 @@ import { Room } from '@material-ui/icons';
 
 const TOKEN = 'pk.eyJ1IjoidHJpcHN5bmMiLCJhIjoiY2xzdGlsbms1MHJqZDJycW5iMjZ3Y3N5MyJ9.CGlzrmUP4GqZ6yOkKu730Q'
 
-export default function Maps(){
+export default function Maps(props){
     const [newPlace, setNewPlace] = useState(null)
     const [drop, setDrop] = useState(false)
     const [dropPosition, setDropPosition] = useState({ left: 0, top: 0 })
@@ -23,12 +23,12 @@ export default function Maps(){
       });
 
       useEffect(() => {
-        axios.get("/pin-place", {params: {trip_id: 1}})
+        axios.get("/pin-place", {params: {trip_id: props.trip_id}})
         .then((response) => {
           setDropArr(response.data)
         })
       },[])
-
+// console.log(props.trip_id)
       function handleClick(e) {
         e.preventDefault()
         setFormIsShown(true)
@@ -78,8 +78,10 @@ export default function Maps(){
         e.preventDefault()
         let maBod = {
           newPlace: newPlace,
-          pinName: pinName
+          pinName: pinName,
+          trip_id: +props.trip_id,
         }
+        // console.log(props.trip_id)
         
         axios.post("/coord", maBod)
         .then((response) => {
@@ -88,7 +90,7 @@ export default function Maps(){
           setDrop(false)
         })
       }
-      console.log(newPlace)
+      // console.log(newPlace)
 
       return (
         <>

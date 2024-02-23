@@ -12,10 +12,12 @@ export default function Trips(){
     const [trip, setTrip] = useState([]);
     const [todoList, setTodoList] = useState([]);
     const { trip_id } = useParams(null);
+    const [pageTrip_id, setPageTrip_id] = useState(trip_id);
     const [pinName, setPinName] = useState([]);
     const [todoModalIsShown, setTodoModalIsShown] = useState(false);
     const [notesModalIsShown, setNotesModalIsShown] = useState(false);
     const [todoData, setTodoData] = useState();
+   
 
 
     useEffect(() => {
@@ -39,8 +41,10 @@ export default function Trips(){
     }, [trip_id]);
     
     useEffect(() => {
-        axios.get('/pin-place', {params: {trip_id: trip_id}})
+        setPageTrip_id(trip_id);
+        axios.get('/pin-place', {params: {trip_id: pageTrip_id}})
         .then((response) => {
+            // console.log(trip_id)
         //   console.log(response.data)
           let pinNameArr = []
           for (let i = 0; i < response.data.length; i++) {
@@ -155,10 +159,11 @@ export default function Trips(){
 
     return (
         <>
-            <div className="trip-name">{(trip.trip_name)}</div>
-            <div>
-                {<Map/>}
-            </div>
+          <div>
+            {<Map trip_id={pageTrip_id}/>}
+          </div>
+            <div className="trip-name">{trip.trip_id}</div>
+
             <div className="trip-lists">
                 <div className="trip-list">
                     <div className="header-container1">
