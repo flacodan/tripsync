@@ -1,12 +1,15 @@
 
 import { React, useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import  {Link}  from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 const SignIn = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [signedIn, setSignedIn] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,7 +20,10 @@ const SignIn = () => {
         axios.post('/api/signIn', userBody)
         .then((response) => {
             console.log(response.data);
-            setSignedIn(true);
+            if (response.data) {
+                setSignedIn(true);
+                navigate('/home', { userObj: response.data });
+            }
         })
         console.log('submitted');
     };
@@ -63,56 +69,4 @@ const SignIn = () => {
     )
     
 };
-
-
-//   return (
-    //     <div>
-    //       <h1>Login</h1>
-    //       <form onSubmit={handleSubmit}>
-    //         <label htmlFor="email">Email:</label>
-    //         <input
-    //           type="email"
-    //           id="email"
-    //           value={email}
-    //           onChange={handleEmailChange}
-    //         />
-    
-    //         <label htmlFor="password">Password:</label>
-    //         <input
-    //           type="password"
-    //           id="password"
-    //           value={password}
-    //           onChange={handlePasswordChange}
-    //         />
-    
-    //         <button type="submit">Sign In</button>
-    //       </form>
-    //     </div>
-    //   );
-    // };
-    
-    // return (
-    //     <div>
-    //         <h1>Login</h1>
-    //         <form onSubmit={handleSubmit}>
-    //             <label htmlFor="email">Email:</label>
-    //             <input
-    //                 type="email"
-    //                 id="email"
-    //                 value={email}
-    //                 onChange={handleEmailChange}
-    //             />
-    
-    //             <label htmlFor="password">Password:</label>
-    //             <input
-    //                 type="password"
-    //                 id="password"
-    //                 value={password}
-    //                 onChange={handlePasswordChange}
-    //             />
-    
-    //             <button type="submit">Sign In</button>
-    //         </form>
-    //     </div>
-    // );
     export default SignIn;
