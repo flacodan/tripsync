@@ -120,6 +120,7 @@ app.put("/done-task", async (req, res) => {
     { to_do_complete: true },
     { where: { to_do_id: req.body.todoId } }
   );
+  
 
   const todo = await To_do.findAll({
     where: { to_do_complete: false },
@@ -213,10 +214,10 @@ app.post("/coord", async (req, res) => {
     pin_lat: latLong.newPlace.lat,
     pin_long: latLong.newPlace.long,
     pin_name: latLong.pinName,
-    trip_id: 1,
+    trip_id: latLong.trip_id,
   });
   const donePin = await Pin.findAll({
-    where: { trip_id: 1 },
+    where: { trip_id: latLong.trip_id },
   });
   res.send(donePin);
 });
