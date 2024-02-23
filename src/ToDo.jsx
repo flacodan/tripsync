@@ -26,7 +26,7 @@ export default function ToDo(){
         .catch((error) => {
             console.log('yeeeeeep, error')
         })
-    }, [])
+    }, [todoName])
 
     const filterByTripName = (tripName) => {
         const filtered = todoName.filter(todo => todo.trip_name === tripName)
