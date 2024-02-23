@@ -1,14 +1,16 @@
 import "./Navbar.css";
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import TSLogo from '/appImages/TSLogo.png';
 import { HiOutlineMenu } from "react-icons/hi";
+import axios from "axios";
 
 
 const NavBar = () => {
 
   const [showNavbar, setShowNavbar] = useState(false);
   const [trips, setTrips] = useState([]);
+  const navigate = useNavigate();
   
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar)
@@ -26,6 +28,16 @@ const NavBar = () => {
     } catch (error) {
       console.error("Error fetching trips:", error);
     }
+  };
+
+  const handleLogout = async () => {
+    //call logout api to destroy session
+    try {
+      const response = await axios.post('/api/logout');
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+    navigate("/");
   };
   
   return (
@@ -73,15 +85,20 @@ const NavBar = () => {
                   />
                 </NavLink>
               </li>
-              <li>
-                <NavLink className="links" to="/user">
-                  <img
-                    className="user-2-icon"
-                    loading="eager"
-                    alt="user icon"
-                    src="../public/appImages/user.png"
-                  />
-                </NavLink>
+              <li className="dropdownNav">
+                <span className="tripBtn">
+                      <img
+                        className="user-2-icon"
+                        loading="eager"
+                        alt="user icon"
+                        src="../public/appImages/user.png"
+                      />
+                </span>
+                  <div className="dropdown-content">
+                    <div className="links" onClick={handleLogout}>
+                      Log out
+                    </div>
+                  </div>
               </li>
             </ul>
         </div>
