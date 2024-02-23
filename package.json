@@ -30,6 +30,7 @@
     "react-map-gl": "^7.1.7",
     "react-router-dom": "^6.22.1",
     "sequelize": "^6.37.1",
+    "session": "^0.1.0",
     "uuid": "^9.0.1",
     "vite-express": "^0.15.0"
   },

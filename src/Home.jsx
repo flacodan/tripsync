@@ -4,6 +4,8 @@ import { v4 as uuidv4 } from 'uuid';
 import mapboxgl from 'mapbox-gl';
 import axios from 'axios';
 
+const TOKEN = 'pk.eyJ1IjoidHJpcHN5bmMiLCJhIjoiY2xzdGlsbms1MHJqZDJycW5iMjZ3Y3N5MyJ9.CGlzrmUP4GqZ6yOkKu730Q'
+
 function Home() {
     const [isCreated, setIsCreated] = useState(false);
     const [tripName, setTripName] = useState('');
@@ -53,13 +55,15 @@ function Home() {
     return (
         <div className='home-container'>
             <h2>Welcome username!</h2>
-            <section className='map-section'>
+          
+            <div className='map-section'>
                 
                     <div id='map'>
                        
                     </div>    
                
-            </section>
+            </div>
+
             <h1>----------------------------------------------</h1>
             <section className='create-trip-section'>
             {!isCreated ? (
