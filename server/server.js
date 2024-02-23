@@ -43,6 +43,26 @@ app.post("/api/getTrip", async (req, res) => {
   }
 });
 
+app.post("/api/addUserToTrip/:trip_code"),
+  loginRequired,
+  async (req, res) => {
+    const trip_code = req.params.trip_code;
+    const { user_id } = req.session.user;
+    try {
+      const trip = await Trip.findOne({
+        where: { trip_code: trip_code },
+      });
+      if (trip) {
+        await trip.addUser(user_id);
+        res.status(200).send(trip);
+      } else {
+        res.status(404).send({ error: "Trip not found" });
+      }
+    } catch (error) {
+      res.status(500).send("oops");
+    }
+  };
+
 app.get("/api/trips/:tripId/todos", async (req, res) => {
   const tripId = req.params.tripId;
   const todos = await getTodosForTrip(tripId);
