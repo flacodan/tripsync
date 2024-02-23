@@ -194,13 +194,6 @@ app.post("/api/signIn", async (req, res) => {
     console.log("Invalid email or password");
   }
 });
-// didnt need (evan)
-// app.get('/to-do-trip-name', async (req, res) => {
-//   const tripName = await Trip.findAll({
-//     where: { trip_complete: false}
-//   })
-//   res.send(tripName);
-// })
 
 app.get("/pin-place", async (req, res) => {
   const { trip_id } = req.query;

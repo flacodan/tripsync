@@ -1,15 +1,19 @@
 .trip-name {
     display: flex;
     justify-content: center;
+    text-transform: uppercase;
     margin-top: 10px;
-    font-size: 40px;
+    font-size: 32px;
     font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    color: #2b334a;
 }
 
 .header-container1 {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     margin: 10px; 
     gap: 10px;
     border-radius: 10px;
@@ -19,15 +23,19 @@
 }
 
 .td-header {
-    display: flex;
-    flex-direction: row; 
-    justify-content: flex-s;
     text-decoration: underline;
     font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    color: #2b334a;
+    font-size: 20px;
 }
 
 .todo2 {
     width: 40%;
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    color: #2b334a;
   }
 
 .owner{
@@ -113,10 +121,10 @@
 }
 
 .completeBtn {
-    margin-left: 5%;
+    margin-left: 10px;
     border-radius: 50%; /* Make the button a circle */
-    width: 30px; /* Increase the width to make the button larger */
-    height: 30px; /* Increase the height to make the button larger */
+    width: 32px; /* Increase the width to make the button larger */
+    height: 32px; /* Increase the height to make the button larger */
     border: none; /* Remove the border */
     font-size: 24px; /* Adjust the value as needed */
     background-color: transparent

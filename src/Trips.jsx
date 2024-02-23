@@ -23,7 +23,6 @@ export default function Trips(){
             if(trip_id){
                 try {
                     const response = await axios.post('/api/getTrip', {trip_id: trip_id});
-                    // console.log(JSON.stringify(response.data));
                     setTrip(response.data[0]);
                     
                     if(response.data) {
@@ -156,15 +155,15 @@ export default function Trips(){
 
     return (
         <>
-        <div className="trip-name">{(trip.trip_name).toUpperCase()}</div>
-          <div>
-                    {<Map/>}
-                </div>
+            <div className="trip-name">{(trip.trip_name)}</div>
+            <div>
+                {<Map/>}
+            </div>
             <div className="trip-lists">
                 <div className="trip-list">
                     <div className="header-container1">
                         <div className='td-header'>DONE</div>
-                        <div className="todo2 td-header">TO DO</div>
+                        <div className="td-header">TO DO</div>
                         <div className="owner td-header">OWNER</div>
                     </div>
                     <div className='table-container1'>
