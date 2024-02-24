@@ -10,6 +10,7 @@ const NavBar = () => {
 
   const [showNavbar, setShowNavbar] = useState(false);
   const [trips, setTrips] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   
   const handleShowNavbar = () => {
@@ -24,8 +25,10 @@ const NavBar = () => {
     try {
       const response = await fetch("/api/getUsersOpenTrips");
       const data = await response.json();
+      setIsLoading(false);
       setTrips(data); 
     } catch (error) {
+      setIsLoading(false);
       console.error("Error fetching trips:", error);
     }
   };
@@ -69,8 +72,10 @@ const NavBar = () => {
                         className="links">{trip.trip_name}
                       </NavLink>
                     ))
+                  ) : isLoading ? (
+                    <div className="links">Loading trips...</div>
                   ) : (
-                    <p>Loading trips...</p>
+                    <div className="emptyResultText links">No trips.</div>
                   )}
                   <NavLink className="links" to="/past-trips">Past Trips</NavLink>
                 </div>
@@ -95,7 +100,7 @@ const NavBar = () => {
                       />
                 </span>
                   <div className="dropdown-content">
-                    <div className="links" onClick={handleLogout}>
+                    <div className="links logoutDiv" onClick={handleLogout}>
                       Log out
                     </div>
                   </div>
