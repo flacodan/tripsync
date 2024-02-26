@@ -6,6 +6,7 @@ import { ImCheckmark2, ImCheckboxChecked } from "react-icons/im";
 import Map from './Maps.jsx'
 import { FiCircle, FiCheckCircle } from "react-icons/fi";
 import ToDoModal from './ToDoModal';
+import NavBar from './Navbar';
 
 export default function Trips(){
         
@@ -159,6 +160,7 @@ export default function Trips(){
 
     return (
         <>
+        <NavBar/>
           <div>
             {<Map trip_id={pageTrip_id}/>}
           </div>
@@ -184,12 +186,9 @@ export default function Trips(){
                 </div>
                 <div className='trip-list'>
                     <div className='header-container1'>
-                        <div className='td-header'>NOTES</div>
+                        
                     </div>
-                    <div className='table-container1'>
-                        <p>Here there be notes</p>
-                    </div>
-                <button className="notes-btn" onClick={() => setNotesModalIsShown(true)}>Notes</button>
+                    
                 </div>
             </div>
             
