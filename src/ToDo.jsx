@@ -25,9 +25,9 @@ export default function ToDo(){
             setTodoName(todoArr)
         })
         .catch((error) => {
-            console.log('yeeeeeep, error')
+            console.error('Error fetching todo data:', error);
         })
-    }, [todoName])
+    }, [])
 
     const filterByTripName = (tripName) => {
         const filtered = todoName.filter(todo => todo.trip_name === tripName)
