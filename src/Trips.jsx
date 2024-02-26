@@ -78,8 +78,8 @@ export default function Trips(){
 
     const handleAddTodo = async (updatedData) => {
         try {
-            const newData = {...updatedData, to_do_complete: false};
-            const response = await axios.post(`/api/newTodo/${trip_id}`, newData);
+            // const newData = {...updatedData, to_do_complete: false};
+            const response = await axios.post(`/api/newTodo/${trip_id}`, updatedData);
             setTodoModalIsShown(false);
             const todoResponse = await axios.get(`/api/trips/${trip_id}/todos`);
             const updatedTodoList = todoResponse.data;
@@ -162,7 +162,7 @@ export default function Trips(){
           <div>
             {<Map trip_id={pageTrip_id}/>}
           </div>
-            <div className="trip-name">{trip.trip_id}</div>
+            <div className="trip-name">{trip.trip_name}</div>
 
             <div className="trip-lists">
                 <div className="trip-list">

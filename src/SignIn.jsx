@@ -22,7 +22,9 @@ const SignIn = () => {
             console.log(response.data);
             if (response.data) {
                 setSignedIn(true);
-                navigate('/home', { userObj: response.data });
+                navigate('/home', { state: { userObj: response.data }});
+                console.log("Sending from login " + JSON.stringify(response.data));
+                //Sending from login {"user":{"user_id":1,"username":"user0@test.com","password":"test"},"success":true}
             }
         })
         console.log('submitted');

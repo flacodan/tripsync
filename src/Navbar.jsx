@@ -1,14 +1,17 @@
 import "./Navbar.css";
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import TSLogo from '/appImages/TSLogo.png';
 import { HiOutlineMenu } from "react-icons/hi";
+import axios from "axios";
 
 
 const NavBar = () => {
 
   const [showNavbar, setShowNavbar] = useState(false);
   const [trips, setTrips] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
   
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar)
@@ -22,10 +25,22 @@ const NavBar = () => {
     try {
       const response = await fetch("/api/getUsersOpenTrips");
       const data = await response.json();
+      setIsLoading(false);
       setTrips(data); 
     } catch (error) {
+      setIsLoading(false);
       console.error("Error fetching trips:", error);
     }
+  };
+
+  const handleLogout = async () => {
+    //call logout api to destroy session
+    try {
+      const response = await axios.post('/api/logout');
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+    navigate("/");
   };
   
   return (
@@ -57,8 +72,10 @@ const NavBar = () => {
                         className="links">{trip.trip_name}
                       </NavLink>
                     ))
+                  ) : isLoading ? (
+                    <div className="links">Loading trips...</div>
                   ) : (
-                    <p>Loading trips...</p>
+                    <div className="emptyResultText links">No trips.</div>
                   )}
                   <NavLink className="links" to="/past-trips">Past Trips</NavLink>
                 </div>
@@ -73,15 +90,20 @@ const NavBar = () => {
                   />
                 </NavLink>
               </li>
-              <li>
-                <NavLink className="links" to="/user">
-                  <img
-                    className="user-2-icon"
-                    loading="eager"
-                    alt="user icon"
-                    src="../public/appImages/user.png"
-                  />
-                </NavLink>
+              <li className="dropdownNav">
+                <span className="tripBtn">
+                      <img
+                        className="user-2-icon"
+                        loading="eager"
+                        alt="user icon"
+                        src="../public/appImages/user.png"
+                      />
+                </span>
+                  <div className="dropdown-content">
+                    <div className="links logoutDiv" onClick={handleLogout}>
+                      Log out
+                    </div>
+                  </div>
               </li>
             </ul>
         </div>
