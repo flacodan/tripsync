@@ -77,14 +77,15 @@ function Home() {
                     </div>    
                
             </section>
-            <h1>----------------------------------------------</h1>
             <section className='create-trip-section'>
             {!isCreated ? (
-                <div className='create-trip-container'>
+                <div className='create-trip-container' style={{transition: 'transform 0.3s', cursor: 'pointer'}}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.3)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}>
                     <h2>Create a Trip</h2>
-                    <label for="tripName">Name your trip:</label>
+                    <label htmlFor="tripName">Name your trip:</label>
                     <input id="tripName" type="text" onChange={(e) => setTripName(e.target.value)}/>
-                    <label for="tripDate">Date:</label>
+                    <label htmlFor="tripDate">Date:</label>
                     <input id="tripDate" type="date" onChange={(e) => setTripDate(e.target.value)} />
                     <button onClick={handleSubmit}>Create</button>
                 </div>
@@ -98,10 +99,11 @@ function Home() {
                 </div>
             )}
             </section>
-            <h1>----------------------------------------------</h1>
 
-            <section>
-                <div>
+            <section className='join-by-code-section'>
+                <div className='join-by-code-container' style={{transition: 'transform 0.3s', cursor: 'pointer'}}
+                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.3)'}
+                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}>
                     <h2>Join by code</h2>
                     <label for="inviteCode" >enter your invite code here:</label>
                     <input value={joinCode} id="inviteCode" type="text" onChange={(e) => setJoinCode(e.target.value)}/>
