@@ -234,9 +234,14 @@ app.delete("/api/deleteTrip/:id", loginRequired, async (req, res) => {
 });
 
 app.post("/api/trips", loginRequired, async (req, res) => {
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! add user to trip!!!!!!!!!!!!!!!!!!!!
-  let newTrip = await Trip.create(req.body);
-  res.status(200).send(newTrip);
+  try {
+    const userId = req.session.user_id;
+    let newTrip = await Trip.create(req.body);
+    await newTrip.addUser(userId);
+    res.status(200).send(newTrip);
+  } catch (error) {
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 app.post("/api/signUp", async (req, res) => {
@@ -264,19 +269,6 @@ app.post("/api/signIn", async (req, res) => {
     console.log("Invalid email or password");
   }
 });
-
-app.post("/logout", loginRequired, async (req, res) => {
-  req.session.destroy();
-  res.send({ success: true });
-});
-
-// didnt need (evan)
-// app.get('/to-do-trip-name', async (req, res) => {
-//   const tripName = await Trip.findAll({
-//     where: { trip_complete: false}
-//   })
-//   res.send(tripName);
-// })
 
 app.get("/pin-place", loginRequired, async (req, res) => {
   const { trip_id } = req.query;
@@ -308,6 +300,11 @@ app.get("/pin-place", loginRequired, async (req, res) => {
   });
   res.send(pins);
 });
+
+// app.post("/logout", loginRequired, async (req, res) => {
+//   req.session.destroy();
+//   res.send({ success: true });
+// });
 
 app.post("/api/logout", async (req, res) => {
   try {

@@ -3,15 +3,16 @@ import { useRef, useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import mapboxgl from 'mapbox-gl';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 
 function Home() {
-    // const MyComponent = () => {
-    //     const { id } = useParams();
-    //     // The `id` parameter will be the value of the `:id` parameter in the route path.
-    //     return <div>{id}</div>;
-    //   };
+
+    const location = useLocation();
+    //can only use this when arriving from signin page:
+    //const { userObj } = location.state;
+    //userObj= {"user":{"user_id":1,"username":"user0@test.com","password":"test"},"success":true}
+
     const [isCreated, setIsCreated] = useState(false);
     const [tripName, setTripName] = useState('');
     const [tripDate, setTripDate] = useState('');
@@ -22,7 +23,7 @@ function Home() {
     const map = useRef(null);
     
     useEffect(() => {
-        mapboxgl.accessToken = 'pk.eyJ1IjoidHJpcHN5bmMiLCJhIjoiY2xzdGloMGMwMWJtcjJpczNjdmx5ZmY2cyJ9.cjfI8_qhTfgfJty0E-iGGA';
+        mapboxgl.accessToken = 'pk.eyJ1IjoidHJpcHN5bmMiLCJhIjoiY2xzdGloMGMwMWJtcjJpczNjdmx5ZmY2cyJ9.cjfI8_qhTfgfJty0E-iGGA'; //Don't forget to cancel your mapbox account
         
         const map = new mapboxgl.Map({
             container: 'map', // container ID
@@ -50,6 +51,7 @@ function Home() {
         }
         axios.post('/api/trips', tripBod)
         .then((response) => {
+        // refresh navbar? show success message???????????????????????????????????????????????????????????
             console.log(response.data);
         })
         console.log('submitted');
@@ -57,10 +59,8 @@ function Home() {
     }
 
     const handleJBC = async () => {
-        console.log(joinCode);
         const response = await axios.post(`/api/addUserToTrip/${joinCode}`).then((response) => {
-        // const trip_id = response.data;
-
+        // refresh navbar? show success message???????????????????????????????????????????????????????????
         console.log('joined trip ' + response.data);
     })
     }

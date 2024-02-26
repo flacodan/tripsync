@@ -10,8 +10,8 @@ export default function ToDoModal({ todoData, onDelete, onClose, onSaveChanges }
         user_id: todoData.user_id || null,
     });
 
-    // const [takeOwnership, setTakeOwnership] = useState(false);
-    const [isChecked, setIsChecked] = useState(todoData.to_do_complete || false);
+    const [isChecked, setIsChecked] = useState(todoData.to_do_complete !== undefined ? todoData.to_do_complete : false);
+
 
     const currentUser = {user_id: 1, username: 'Bob'}; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Fix this to use current logged in user !!!!!!!!!!!!!!!!!!!!!!
     
@@ -24,7 +24,9 @@ export default function ToDoModal({ todoData, onDelete, onClose, onSaveChanges }
     }, [todoData]);
 
     const handleToggleChange = () => {
-        setIsChecked(prevChecked => !prevChecked);
+        // console.log("Todo complete was" + isChecked);
+        // console.log("Todo complete prevChecked " + prevChecked);
+        setIsChecked(!isChecked);
     };
 
     const handleTakeOwnership = () => {
@@ -37,6 +39,7 @@ export default function ToDoModal({ todoData, onDelete, onClose, onSaveChanges }
     };
 
     const handleSubmit = async (e) => {
+        console.log("Submit: Todo complete " + isChecked);
         e.preventDefault();
         const updatedTodoData = {
             ...todoData,
