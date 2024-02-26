@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import mapboxgl from 'mapbox-gl';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import NavBar from './Navbar';
 
 
 function Home() {
@@ -68,6 +69,8 @@ function Home() {
 
         
     return (
+        <>
+        <NavBar/>
         <div className='home-container'>
             <h2>Welcome username!</h2>
             <section className='map-section'>
@@ -110,6 +113,7 @@ function Home() {
                 </div>
             </section>
         </div>
+    </>
     )
 }
 

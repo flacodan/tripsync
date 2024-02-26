@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react'
 import axios from 'axios';
+import NavBar from './Navbar';
 
 
 export default function PastTrips(){
@@ -34,6 +35,7 @@ export default function PastTrips(){
 
     return (
         <>
+        <NavBar/>
           <div className="header-container">
                 <div className="task">Trip</div>
                 <div className="location">Date</div>
