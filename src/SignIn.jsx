@@ -36,13 +36,16 @@ const SignIn = () => {
             {!signedIn ? (
                     <div className='sign-in-page'>
                         <section className='sign-in-container '>
-                            <p> LOGO IMG GOES HERE</p>
+                            <img src='../public/appImages/TSLogo.png' alt="Logo" className="logo-sign-in"/>
+                        <div className="appName-sign-in">
+                            <h1>TripSync</h1>
+                        </div>
                             {/* <h1>Welcome Back!</h1> */}
                             <form className='sign-in-form'>
                             <h1 className='sign-in-txt'>Sign in to your Account</h1>
                                 <label className='usernm-txt' htmlFor="email">Email or username</label>
                                 <input
-                                    clqaassName='usernm-input'
+                                    className='usernm-input'
                                     type="email"
                                     id="email"
                                     value={username}
@@ -59,7 +62,8 @@ const SignIn = () => {
                                 />
                 
                                 <button className='sign-in-submit' onClick={handleSubmit} type="submit">Sign In</button>
-                                New to TripSync? <Link to="/sign-up">Sign Up</Link>
+                                <h4 className='sign-up-redirect-title'>New to TripSync?</h4>
+                                <Link className='sign-up-redirect' to="/sign-up">Sign Up</Link>
                             </form>
                         </section>
                     </div>

@@ -34,27 +34,37 @@ const SignUp = () => {
         <>
 
             {!signedUp ? (
-                    <div>
-                        <h1>Sign Up</h1>
-                        <form>
-                            <label htmlFor="email">Email/Username:</label>
+                    <div className='sign-up-page'>
+                        <section className='sign-up-container '>
+                        <img src='../public/appImages/TSLogo.png' alt="Logo" className="logo-sign-up"/>
+                        <div className="appName-sign-up">
+                            <h1>TripSync</h1>
+                        </div>
+                        <form className='sign-up-form'>
+                        <h1 className='sign-up-txt'>Create your Account</h1>
+                            <label className='usernm-txt' htmlFor="email">Email/Username:</label>
                             <input
+                                className='usernm-input'
                                 type="email"
                                 id="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
             
-                            <label htmlFor="password">Password:</label>
+                            <label className='pass-txt' htmlFor="password">Password:</label>
                             <input
+                                className='pass-input'
                                 type="password"
                                 id="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
             
-                            <button onClick={handleSubmit} type="submit">Sign Up</button>
+                            <button className='sign-in-submit' onClick={handleSubmit} type="submit">Sign Up</button>
+                            <h4 className='sign-up-redirect-title'>Already have an account?</h4>
+                                <Link className='sign-up-redirect' to="/sign-in">Sign In</Link>
                         </form>
+                        </section>
                     </div>
                 ) : (
                     <div>
