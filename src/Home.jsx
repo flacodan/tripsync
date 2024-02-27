@@ -5,7 +5,7 @@ import mapboxgl from 'mapbox-gl';
 import axios from 'axios';
 import { useParams, useLocation } from 'react-router-dom';
 import NavBar from './Navbar';
-
+import './Home.css'
 
 function Home() {
 
@@ -16,7 +16,7 @@ function Home() {
 
     const [isCreated, setIsCreated] = useState(false);
     const [tripName, setTripName] = useState('');
-    const [tripDate, setTripDate] = useState('');
+    const [tripDate, setTripDate] = useState(null);
     const [tripCode, setTripCode] = useState('');
     const [joinCode, setJoinCode] = useState('');
     const [tripComplete, setTripComplete] = useState(false);
@@ -41,7 +41,7 @@ function Home() {
         const randomCode = uuidv4().slice(0, 6).toUpperCase();
         setTripCode(randomCode)
         setIsCreated(true)
-        e.preventDefault();
+        // e.preventDefault();
         console.log('tripDate' + tripDate )
         console.log('submitted trip');
         let tripBod = {
@@ -90,15 +90,20 @@ function Home() {
                     <input id="tripName" type="text" onChange={(e) => setTripName(e.target.value)}/>
                     <label htmlFor="tripDate">Date:</label>
                     <input id="tripDate" type="date" onChange={(e) => setTripDate(e.target.value)} />
-                    <button onClick={handleSubmit}>Create</button>
+                    <button onClick={() => {
+                        handleSubmit();
+                    }}>Create</button>
                 </div>
             ) : (
-    
-                <div className='createD-trip-container'>
-                    <h2>Trip Successfully Created!</h2>
-                    <h4>You can locate this trip in the trips tab above!</h4>
-                    <h3>Group members can join using this code:</h3>
-                    <h2>{tripCode}</h2>
+                <div className="modal-wrapper">
+                    <div className="modal-box">
+                        <h2>Trip Successfully Created!</h2>
+                        <h4>You can locate this trip in the trips tab above!</h4>
+                        <h3>Group members can join using this code:</h3>
+                        <h2>{tripCode}</h2>
+                        <button className="x" onClick={() => window.location.reload()}>X</button>
+                         {/* <div className="modal-background1"></div> */}
+                    </div>
                 </div>
             )}
             </section>

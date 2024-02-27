@@ -147,7 +147,7 @@ export default function Trips(){
                     title={`Change completion status`}
                     onClick={(event) => { clickTodoComplete(event, todo.to_do_id) }}
                 >
-                    { todo.to_do_complete ? <FiCheckCircle style={{color:"#6c757d", fontSize: '2rem'}} /> : <FiCircle style={{color:"#d9dadb", fontSize: '2rem'}} /> }
+                    { todo.to_do_complete ? <FiCheckCircle style={{color:"#2b334a", fontSize: '2rem'}} /> : <FiCircle style={{color:"#2b334a", fontSize: '2rem'}} /> }
                 </button>
                 <div className="todo2">{todo.to_do_name}</div>
                 {todo.username && (
