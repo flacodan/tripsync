@@ -53,7 +53,7 @@ function Home() {
         axios.post('/api/trips', tripBod)
         .then((response) => {
         // refresh navbar? show success message???????????????????????????????????????????????????????????
-            console.log(response.data);
+            console.log("Home.handlesubmit " + JSON.stringify(response.data));
         })
         console.log('submitted');
 
@@ -113,7 +113,7 @@ function Home() {
                 onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.3)'}
                 onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}>
                     <h2>Join by code</h2>
-                    <label for="inviteCode" >enter your invite code here:</label>
+                    <label htmlFor="inviteCode" >enter your invite code here:</label>
                     <input value={joinCode} id="inviteCode" type="text" onChange={(e) => setJoinCode(e.target.value)}/>
                     <button onClick={handleJBC}>Join Trip</button> 
                     {/* <p>{tripCodeJoin}</p> */}
