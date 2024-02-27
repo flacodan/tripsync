@@ -2,6 +2,7 @@ import './ToDo.css'
 import ToDoRow from './ToDoRow.jsx'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import NavBar from './Navbar';
 
 
 export default function ToDo(){
@@ -35,6 +36,7 @@ export default function ToDo(){
 
     return (
         <> 
+        <NavBar/>
             <div className="dropdown">
                 <button className="dropbtn">Filter by Trip</button>
                 <div className="dropdown-options">

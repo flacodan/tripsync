@@ -68,8 +68,11 @@ const NavBar = () => {
                     trips.map((trip) => (
                       <NavLink 
                         key={trip.trip_id} 
-                        to={ `/trips/${trip.trip_id}` }
-                        className="links">{trip.trip_name}
+                        to={`/trips/${trip.trip_id}`}
+                        className="links"
+                        onClick={() => {window.location.reload}}
+                      >
+                        {trip.trip_name}
                       </NavLink>
                     ))
                   ) : isLoading ? (

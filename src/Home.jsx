@@ -3,8 +3,9 @@ import { useRef, useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import mapboxgl from 'mapbox-gl';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
-
+import { useParams, useLocation } from 'react-router-dom';
+import NavBar from './Navbar';
+import './Home.css'
 
 function Home() {
 
@@ -15,7 +16,7 @@ function Home() {
 
     const [isCreated, setIsCreated] = useState(false);
     const [tripName, setTripName] = useState('');
-    const [tripDate, setTripDate] = useState('');
+    const [tripDate, setTripDate] = useState(null);
     const [tripCode, setTripCode] = useState('');
     const [joinCode, setJoinCode] = useState('');
     const [tripComplete, setTripComplete] = useState(false);
@@ -40,7 +41,7 @@ function Home() {
         const randomCode = uuidv4().slice(0, 6).toUpperCase();
         setTripCode(randomCode)
         setIsCreated(true)
-        e.preventDefault();
+        // e.preventDefault();
         console.log('tripDate' + tripDate )
         console.log('submitted trip');
         let tripBod = {
@@ -52,7 +53,7 @@ function Home() {
         axios.post('/api/trips', tripBod)
         .then((response) => {
         // refresh navbar? show success message???????????????????????????????????????????????????????????
-            console.log(response.data);
+            console.log("Home.handlesubmit " + JSON.stringify(response.data));
         })
         console.log('submitted');
 
@@ -68,6 +69,8 @@ function Home() {
 
         
     return (
+        <>
+        <NavBar/>
         <div className='home-container'>
                 {/* <section className="balloon-home1">
                 <img className='balloon-img-home1' src="../public/appImages/balloon.png" alt="birds" />
@@ -75,13 +78,10 @@ function Home() {
             <div className='home-forms-container'>
                 {/* <h2>Welcome username!</h2> */}
                 <section className='map-section'>
-                    
-                        <div id='map'>
-                        
-                        </div>    
-                
-                </section>
-                <section className='create-trip-section'>
+            <div id='map'>   
+                    </div>
+            </section>
+            <section className='create-trip-section'>
                 {!isCreated ? (
                     <div className='create-trip-container'>
                         <h2>Create a Trip</h2>
@@ -91,35 +91,30 @@ function Home() {
                         <input id="tripDate" type="date" onChange={(e) => setTripDate(e.target.value)} />
                         <button onClick={handleSubmit}>Create</button>
                     </div>
-                ) : (
-        
-                    <div className='createD-trip-container'>
+            ) : (
+                <div className="modal-wrapper">
+                    <div className="modal-box">
                         <h2>Trip Successfully Created!</h2>
                         <h4>You can locate this trip in the trips tab above!</h4>
                         <h3>Group members can join using this code:</h3>
-                        <h2>{tripCode}</h2>
+                        <h2>{tripCode}</h2> 
+                        <button className="x" onClick={() => window.location.reload()}>X</button>
+                         {/* <div className="modal-background1"></div> */}
                     </div>
-                )}
-                </section>
-
-                <section className='join-by-code-section'>
+                </div>
+            )}
+            </section>
+             <section className='join-by-code-section'>
                     <div className='join-by-code-container'>
                         <h2>Join by code</h2>
-                        <label for="inviteCode" >enter your invite code here:</label>
+                        <label htmlFor="inviteCode" >enter your invite code here:</label>
                         <input value={joinCode} id="inviteCode" type="text" onChange={(e) => setJoinCode(e.target.value)}/>
                         <button onClick={handleJBC}>Join Trip</button> 
                         {/* <p>{tripCodeJoin}</p> */}
                     </div>
                 </section>
-            </div>
-            
-            <section className="balloon-home2">
-                <img className='balloon-img-home2' src="../public/appImages/balloon.png" alt="birds" />
-            </section>
-            <section className="balloon-home3">
-                <img className='balloon-img-home3' src="../public/appImages/balloon.png" alt="birds" />
-            </section>
         </div>
+    </>
     )
 }
 
