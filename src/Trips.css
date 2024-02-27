@@ -45,6 +45,8 @@
 
 .owner{
     width: 30%;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
 }
 
 .owner.td-header {
@@ -167,16 +169,17 @@
 }
 
 .to-do-btn {
-    position: absolute;
     left: 50%;
     transform: translateX(-50%);
     width: 300px;
-    font-family: "Roboto", sans-serif;
+    font-family: "Poppins", sans-serif;
     border-radius: 10px;
     font-size: 24px; /* Adjust the value as needed */
     background-color: rgba(241, 119, 59, 0.42);
     margin-top: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 70px;
+    margin-left: 50%;
+    font-style: italic;
 }
 
 .modal-wrapper {
