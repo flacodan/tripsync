@@ -34,28 +34,34 @@ const SignIn = () => {
         <>
 
             {!signedIn ? (
-                    <div>
-                        <h1>Welcome Back!</h1>
-                        <h2>Sign in below</h2>
-                        <form>
-                            <label htmlFor="email">Email/Username:</label>
-                            <input
-                                type="email"
-                                id="email"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
-                            />
-            
-                            <label htmlFor="password">Password:</label>
-                            <input
-                                type="password"
-                                id="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-            
-                            <button onClick={handleSubmit} type="submit">Sign In</button>
-                        </form>
+                    <div className='sign-in-page'>
+                        <section className='sign-in-container '>
+                            <p> LOGO IMG GOES HERE</p>
+                            {/* <h1>Welcome Back!</h1> */}
+                            <form className='sign-in-form'>
+                            <h1 className='sign-in-txt'>Sign in to your Account</h1>
+                                <label className='usernm-txt' htmlFor="email">Email or username</label>
+                                <input
+                                    clqaassName='usernm-input'
+                                    type="email"
+                                    id="email"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                />
+                
+                                <label className='pass-txt' htmlFor="password">Password</label>
+                                <input
+                                    className='pass-input'
+                                    type="password"
+                                    id="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                
+                                <button className='sign-in-submit' onClick={handleSubmit} type="submit">Sign In</button>
+                                New to TripSync? <Link to="/sign-up">Sign Up</Link>
+                            </form>
+                        </section>
                     </div>
                 ) : (
                     <div>

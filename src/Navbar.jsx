@@ -70,7 +70,7 @@ const NavBar = () => {
                         key={trip.trip_id} 
                         to={`/trips/${trip.trip_id}`}
                         className="links"
-                        onClick={window.location.reload}
+                        onClick={() => {window.location.reload}}
                       >
                         {trip.trip_name}
                       </NavLink>

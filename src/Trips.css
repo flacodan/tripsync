@@ -3,10 +3,12 @@
     justify-content: center;
     text-transform: uppercase;
     margin-top: 10px;
+    margin-bottom: 40px;
     font-size: 32px;
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     color: #2b334a;
+    cursor: pointer;
 }
 
 .header-container1 {
@@ -28,23 +30,30 @@
     font-weight: 500;
     color: #2b334a;
     font-size: 20px;
+    margin-left: 30px;
+    margin-right:30px
 }
 
 .todo2 {
-    width: 40%;
+    width: 50%;
     font-size: 18px;
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     color: #2b334a;
+    margin-left: 370px;
   }
 
 .owner{
     width: 30%;
 }
 
+.owner.td-header {
+   width: 10%;
+}
+
 .table-container1 {
     margin-bottom: 10px;
-    height: 300px;
+    height: 400px;
     overflow: auto;
 }
 
@@ -62,7 +71,7 @@
     /* border: 1px solid black;  */
     border-radius: 10px;
     font-size: 24px; /* Adjust the value as needed */
-    background-color: rgba(241, 119, 59, 0.42);
+    background-color: #ffd8a9;
     height: 40px;
     width: 90%;
     margin: 0 auto; /* Center horizontally */
@@ -127,7 +136,8 @@
     height: 32px; /* Increase the height to make the button larger */
     border: none; /* Remove the border */
     font-size: 24px; /* Adjust the value as needed */
-    background-color: transparent
+    background-color: transparent;
+    margin-left: 30px
 }
 
 .trip-lists {
@@ -135,7 +145,10 @@
 }
 
 .trip-list {
-    width: 50%;
+    position: absolute;
+    width: 70%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .formLI {
@@ -154,17 +167,17 @@
 }
 
 .to-do-btn {
-position: absolute;
-    left: 28%;
+    position: absolute;
+    left: 50%;
     transform: translateX(-50%);
     width: 300px;
     font-family: "Roboto", sans-serif;
     border-radius: 10px;
     font-size: 24px; /* Adjust the value as needed */
     background-color: rgba(241, 119, 59, 0.42);
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
-
-
 
 .modal-wrapper {
     position: fixed;

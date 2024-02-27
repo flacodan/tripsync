@@ -62,7 +62,7 @@ export default function ToDoModal({ todoData, onDelete, onClose, onSaveChanges }
     return (
         <div className="modal-wrapper">
           <div className="modal-box">
-            <button className="buttonX" onClick={handleClose}>x</button>
+            <button className="buttonX" onClick={() => handleClose()}>x</button>
             <form onSubmit={handleSubmit}>
                 <ul>
                     <li className='formLI'>
@@ -86,7 +86,7 @@ export default function ToDoModal({ todoData, onDelete, onClose, onSaveChanges }
                     <li className='formLI'>
                         <button 
                             className='toggle-button' 
-                            onClick={handleToggleChange}
+                            onClick={() => handleToggleChange()}
                             title={`Change completion status`}
                             type="button"
                             >
@@ -97,7 +97,7 @@ export default function ToDoModal({ todoData, onDelete, onClose, onSaveChanges }
                         </button>
                         <div className='me-auto'>
                             {todoData.to_do_id && (
-                                <button title={`Delete`} onClick={onDelete}>
+                                <button title={`Delete`} onClick={() => onDelete()}>
                                     <MdDeleteOutline />
                                 </button>
                             )}
