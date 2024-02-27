@@ -1,0 +1,164 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 500px;
+    border: 1px;
+    background-color:#ffd8a9;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    height: 500px;
+    text-align: center;
+    /* border: 1px solid red; */
+    position: relative;
+}
+.formUl {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid green; */
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: space-around; */
+}
+
+.formLI {
+    margin: 5px;
+    padding: 0;
+    width: 100%;
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.formLI--row {
+    flex-direction:row
+}
+.formLI--right {
+    /* border: 1px solid blue; */
+    /* height: 100%; */
+    margin-top: auto;
+    align-items:end;
+    justify-content:flex-end;
+}
+
+.buttonX {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    /* display: flex; */
+    /* margin-top: -60px; */
+    /* margin-left: 470px; */
+    /* border: 1px solid red; */
+}
+
+.to-do {
+    display: flex;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 35px;
+    color: #1f222c;
+    margin-top: 90px;
+    justify-content: center;
+    /* border: 1px solid red; */
+}
+
+#todo-name {
+    display: flex;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 18px;
+    color: #1f222c;
+    margin-top: 5px;
+    margin-bottom: -10px;
+    justify-content: center;
+    /* border: 1px solid red; */
+}
+
+.owner1 {
+    display: flex;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 35px;
+    color: #1f222c;
+    margin-top: 40px;
+    justify-content: center;
+    /* border: 1px solid red; */
+}
+
+.comp {
+    display: flex;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 35px;
+    color: #1f222c;
+    margin-top: 30px;
+    margin: 0;
+    margin-right: 8px;
+    /* border: 1px solid red; */
+}
+
+.d {
+    display: flex;
+    font-size: 20px;
+    /* margin-left: 400px; */
+    /* border: 1px solid red; */
+}
+
+.toggle-button {
+    display: flex;
+    margin-top: 10px;
+    /* border: 1px solid red; */
+}
+
+.sub1 {
+    display: flex;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 20px;
+    color: #1f222c;
+    /* margin-top: 20px; Add margin-top to move the button down */
+    /* margin-left: 300px; */
+    margin-right: 4px;
+}
+
+.me {
+    display: flex;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 20px;
+    color: #1f222c;
+    margin-top: 5px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+#asdf{
+    display:flex;
+    justify-content: flex-end;
+    margin-left: 350px;
+    margin-top: 80px;
+}
+
+/* .lkjh{
+    display:flex;
+    justify-content:center
+} */
+
+ul{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

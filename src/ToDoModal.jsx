@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FiCircle, FiCheckCircle } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
+import './ToDoModal.css'
 
 export default function ToDoModal({ todoData, onDelete, onClose, onSaveChanges }) {  
 
@@ -61,28 +62,35 @@ export default function ToDoModal({ todoData, onDelete, onClose, onSaveChanges }
     return (
         <div className="modal-wrapper">
           <div className="modal-box">
+            
+            <form className="form" onSubmit={handleSubmit}>
             <button className="buttonX" onClick={() => handleClose()}>x</button>
-            <form onSubmit={handleSubmit}>
-                <ul>
+                <ul className="formUl">
                     <li className='formLI'>
-                    <label htmlFor="todo-name">To-do:</label>
-                    <input 
-                        type="text" 
-                        id="todo-name" 
-                        name="to_do_name" 
-                        value={formData.to_do_name}
-                        onChange={(e) => setFormData({ ...formData, to_do_name: e.target.value })}
-                    />
+                        <label className="to-do" htmlFor="todo-name">To-do</label>
                     </li>
                     <li className='formLI'>
-                        <label>
-                        Owner: {formData.username}
+                        <input 
+                            type="text" 
+                            id="todo-name" 
+                            name="to_do_name" 
+                            value={formData.to_do_name}
+                            onChange={(e) => setFormData({ ...formData, to_do_name: e.target.value })}
+                            />
+                    </li>
+                    <li className='formLI'>
+                        <label className='owner1'>
+                        Owner {formData.username}
                         </label>
-                        {!formData.username && (
-                            <button title={`Set yourself as owner`} onClick={handleTakeOwnership}>I'll do it!</button>
-                        )}
                     </li>
                     <li className='formLI'>
+                        {!formData.username && (
+                            <button className="me" title={`Set yourself as owner`} onClick={handleTakeOwnership}>I'll do it!</button>
+                            )}
+                    </li>
+                    <li className='formLI formLI--row'>
+                        {/* <section className="lkjh"> */}
+                        <p className="comp">Completed?</p>
                         <button 
                             className='toggle-button' 
                             onClick={() => handleToggleChange()}
@@ -94,16 +102,23 @@ export default function ToDoModal({ todoData, onDelete, onClose, onSaveChanges }
                             : <FiCircle style={{color:"#d9dadb", fontSize: '2rem'}} />
                             }
                         </button>
-                        <div className='me-auto'>
+                        {/* </section> */}
+                        
+                    </li>
+                    <li className='formLI formLI--row formLI--right'>
+                        {/* <div className='me-auto'> */}
                             {todoData.to_do_id && (
-                                <button title={`Delete`} onClick={() => onDelete()}>
+                                <>
+                                <button className="sub1" type="submit">Submit</button> 
+                                <button className="d"title={`Delete`} onClick={() => onDelete()}>
                                     <MdDeleteOutline />
                                 </button>
+                                </>
                             )}
-                        </div>
+                        {/* </div> */}
                     </li>
                 </ul>
-                <button type="submit">Submit</button>
+                
             </form>
           </div>
         </div>
