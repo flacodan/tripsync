@@ -3,7 +3,17 @@
     width: 90%;
     height: 500px;
     z-index: 999;
+    border-radius: 10px;
+    margin-top: 80px;
+    margin-bottom: 40px;
 }
 
+.mapboxgl-canvas {
+    border-radius: 20px;
+}
 
+.mapboxgl-ctrl-attrib {
+    border-radius: 10px;
+    margin-right: 10px !important;
+}
 
