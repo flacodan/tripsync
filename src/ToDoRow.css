@@ -3,47 +3,75 @@
     flex-direction: row; 
     justify-content: space-between;
     align-items: center;
-    margin: 10px; 
-    gap: 180px;
+    /* margin: 10px;  */
+    gap: 30px;
     /* border: 1px solid black;  */
     border-radius: 10px;
-    font-size: 30px; /* Adjust the value as needed */
-    background-color: rgba(241, 119, 59, 0.42);
+    font-size: 24px; /* Adjust the value as needed */
+    background-color: #ffd8a9;
+    height: 40px;
+    width: 70%;
+    margin: 0 auto; /* Center horizontally */
+    margin-bottom: 15px;
 }
 
 .trip{
     margin-right: 30px;
+    width: 250px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: #1f222c;
 }
 
 .checkbox {
-    position: absolute;
-    left: 200px; /* Adjust the value as needed */
-    border-radius: 50%; /* Make the button a circle */
-    width: 45px; /* Increase the width to make the button larger */
-    height: 45px; /* Increase the height to make the button larger */
+    cursor: pointer;
     border: none; /* Remove the border */
-    font-size: 30px; /* Adjust the value as needed */
-}
-
-.row-container {
-    height: 60px;
-    width: 80%;
-    margin: 0 auto; /* Center horizontally */
-    margin-bottom: 20px;
+    border-radius: 50%; /* Make the button a circle */
+    width: 32px; /* Increase the width to make the button larger */
+    height: 32px; /* Increase the height to make the button larger */
+    font-size: 24px; /* Adjust the value as needed */
+    background-color: transparent;
+    margin-left: 30px
 }
 
 .todo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     width: 300px;
-    font-family: "Roboto", sans-serif;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    margin-left: 15px;
+    color: #1f222c;
 }
 
-.trip {
-    position: absolute;
-    left: 80%;
-    transform: translateX(-50%);
-    width: 250px;
-    font-family: "Roboto", sans-serif;
+.page-container {
+    display: flex;
+    flex-direction: column;
 }
+
+.page-header {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 30px;
+  color: #1f222c;
+  margin-top: 15px;
+  margin-left: 45%;
+}
+
+.trip-header {
+    width: 300px;
+    text-decoration: underline;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 26px;
+    color: #1f222c;
+  }
+
+  .date-header {
+    width: 250px;
+    text-decoration: underline;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 26px;
+    color: #1f222c;
+  }

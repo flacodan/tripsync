@@ -80,7 +80,7 @@ const NavBar = () => {
                   ) : (
                     <div className="emptyResultText links">No trips.</div>
                   )}
-                  <NavLink className="links" to="/past-trips">Past Trips</NavLink>
+                  <NavLink className="links" to="/past-trips">- Past Trips -</NavLink>
                 </div>
               </li>
               <li>
