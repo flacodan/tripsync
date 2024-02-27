@@ -88,6 +88,7 @@ export default function Maps(props){
           setDropArr(response.data)
           setFormIsShown(false)
           setDrop(false)
+          
         })
       }
       // console.log(newPlace)

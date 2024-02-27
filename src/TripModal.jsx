@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FiCircle, FiCheckCircle } from "react-icons/fi";
 import { MdDeleteOutline, MdContentCopy } from "react-icons/md";
+import './TripModal.css'
 
 export default function TripModal({ tripData, onDelete, onClose, onSaveChanges }) {  
 
@@ -69,31 +70,34 @@ export default function TripModal({ tripData, onDelete, onClose, onSaveChanges }
     return (
         <div className="modal-wrapper">
           <div className="modal-box">
+            <form className="form" onSubmit={handleSubmit}>
             <button className="buttonX" onClick={() => handleCloseTripModal()}>x</button>
-            <form onSubmit={handleSubmit}>
-                <ul>
+                <ul className="formUl">
                     <li className='formLI'>
-                    <label htmlFor="trip-name">Trip:</label>
-                    <input 
-                        type="text" 
-                        id="trip-name" 
-                        name="trip_name" 
-                        value={formData.trip_name}
-                        onChange={(e) => setFormData({ ...formData, trip_name: e.target.value })}
-                    />
+                        <label className="to-do" htmlFor="trip-name">Trip:</label>
                     </li>
                     <li className='formLI'>
-                        <label>
+
+                        <input 
+                            type="text" 
+                            id="trip-name" 
+                            name="trip_name" 
+                            value={formData.trip_name}
+                            onChange={(e) => setFormData({ ...formData, trip_name: e.target.value })}
+                        />
+                    </li>
+                    <li className='formLI'>
+                        <label className='owner1'>
                             Sharing Code: {formData.trip_code}
                         </label>
+                    </li>
+                    <li className='formLI'>
                         <button title={`Copy the code`} onClick={handleCopyCode}>
                             <MdContentCopy />
                         </button>
                     </li>
-                    <li className='formLI'>
-                        <label>
-                            Complete?
-                        </label>
+                    <li className='formLI formLI--row'>
+                        <label className="comp">Complete?</label>
                         <button 
                             className='toggle-button' 
                             onClick={handleToggleChange}
@@ -105,16 +109,20 @@ export default function TripModal({ tripData, onDelete, onClose, onSaveChanges }
                             : <FiCircle style={{color:"#d9dadb", fontSize: '2rem'}} />
                             }
                         </button>
-                        <div className='me-auto'>
+                    </li>
+                    <li className='formLI formLI--row formLI--right'>
+                        {/* <div className='me-auto'> */}
                             {tripData.trip_id && (
+                                <>
+                                <button type="submit">Submit</button>
                                 <button title={`Delete`} onClick={() => handleDelete()}>
                                     <MdDeleteOutline />
                                 </button>
+                                </>
                             )}
-                        </div>
+                        {/* </div> */}
                     </li>
                 </ul>
-                <button type="submit">Submit</button>
             </form>
           </div>
         </div>
