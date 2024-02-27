@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FiCircle, FiCheckCircle } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
+import './ToDoModal.css'
 
 export default function ToDoModal({ todoData, onDelete, onClose, onSaveChanges }) {  
 
