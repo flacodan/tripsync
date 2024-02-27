@@ -72,39 +72,39 @@ function Home() {
         <>
         <NavBar/>
         <div className='home-container'>
-                {/* <section className="balloon-home1">
-                <img className='balloon-img-home1' src="../public/appImages/balloon.png" alt="birds" />
-                </section> */}
+            {/* <section className="balloon-home1">
+            <img className='balloon-img-home1' src="../public/appImages/balloon.png" alt="birds" />
+            </section> */}
             <div className='home-forms-container'>
                 {/* <h2>Welcome username!</h2> */}
                 <section className='map-section'>
-            <div id='map'>   
+                    <div id='map'>   
                     </div>
-            </section>
-            <section className='create-trip-section'>
-                {!isCreated ? (
-                    <div className='create-trip-container'>
-                        <h2>Create a Trip</h2>
-                        <label htmlFor="tripName">Name your trip:</label>
-                        <input id="tripName" type="text" onChange={(e) => setTripName(e.target.value)}/>
-                        <label htmlFor="tripDate">Date:</label>
-                        <input id="tripDate" type="date" onChange={(e) => setTripDate(e.target.value)} />
-                        <button onClick={handleSubmit}>Create</button>
-                    </div>
-            ) : (
-                <div className="modal-wrapper">
-                    <div className="modal-box">
-                        <h2>Trip Successfully Created!</h2>
-                        <h4>You can locate this trip in the trips tab above!</h4>
-                        <h3>Group members can join using this code:</h3>
-                        <h2>{tripCode}</h2> 
-                        <button className="x" onClick={() => window.location.reload()}>X</button>
-                         {/* <div className="modal-background1"></div> */}
-                    </div>
-                </div>
-            )}
-            </section>
-             <section className='join-by-code-section'>
+                </section>
+                <section className='create-trip-section'>
+                    {!isCreated ? (
+                        <div className='create-trip-container'>
+                            <h2>Create a Trip</h2>
+                            <label htmlFor="tripName">Name your trip:</label>
+                            <input id="tripName" type="text" onChange={(e) => setTripName(e.target.value)}/>
+                            <label htmlFor="tripDate">Date:</label>
+                            <input id="tripDate" type="date" onChange={(e) => setTripDate(e.target.value)} />
+                            <button onClick={handleSubmit}>Create</button>
+                        </div>
+                    ) : (
+                        <div className="modal-wrapper">
+                            <div className="modal-box">
+                                <h2>Trip Successfully Created!</h2>
+                                <h4>You can locate this trip in the trips tab above!</h4>
+                                <h3>Group members can join using this code:</h3>
+                                <h2>{tripCode}</h2> 
+                                <button className="x" onClick={() => window.location.reload()}>X</button>
+                                {/* <div className="modal-background1"></div> */}
+                            </div>
+                        </div>
+                    )}
+                </section>
+                <section className='join-by-code-section'>
                     <div className='join-by-code-container'>
                         <h2>Join by code</h2>
                         <label htmlFor="inviteCode" >enter your invite code here:</label>
@@ -113,8 +113,9 @@ function Home() {
                         {/* <p>{tripCodeJoin}</p> */}
                     </div>
                 </section>
+            </div>
         </div>
-    </>
+        </>
     )
 }
 
