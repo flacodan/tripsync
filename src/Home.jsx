@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { useRef, useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import mapboxgl from 'mapbox-gl';
@@ -113,6 +112,7 @@ function Home() {
                         {/* <p>{tripCodeJoin}</p> */}
                     </div>
                 </section>
+            </div>
         </div>
     </>
     )

@@ -12,6 +12,7 @@
 .landing {
   /* background-color: #f5f5f5;
   height: 100vh; */
+  margin-top: 100px;
   width: 75%;
   display: flex;
   justify-content: center;
@@ -133,9 +134,6 @@
  }
 
 
-
-
-
 /* left balloon */
  .balloon-home2 {
   margin-left: -900px;
@@ -204,6 +202,7 @@
     justify-content: space-between;
     align-items: center;
     height: 100%;
+    margin-bottom: 50px;
   }
   
   
@@ -269,18 +268,21 @@
   }
 
   .sign-in-container {
+    
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 0 20px;
-    margin-top: -120px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 800px;
+  padding: 0 20px;
+    /* margin-top: 25px; */
     /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  */
     }
 
     
 .sign-in-form {
+  margin-top: px;
+  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -291,17 +293,18 @@
   border-radius: 12px;
   padding: 15px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
-  height: 500px;
-  margin-bottom: -100 px;
+  height: 550px;
+  /* margin-bottom: -100 px; */
 }
 
 .sign-in-txt {
   font-family: "Poppins", sans-serif;
-  font-weight: 500;
+  font-weight: 900;
   font-style: italic;
-  font-size: 35px;
+  font-size: 30px;
   color: #1f222c;
   margin-top: 10px;
+  margin-bottom: -20px;
   /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  */
 }
 
@@ -370,3 +373,101 @@
   margin-top: 20px;
 }
 
+.sign-up-redirect {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: #1f222c;
+  /* text-decoration: none; */
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out; 
+  margin-top: -35px;
+  
+  height: 42px;
+}
+
+.sign-up-redirect-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: #1f222c;
+  margin-top: 10px;
+  margin-bottom: -15px;
+  height: 42px;
+}
+
+.appName-sign-in {
+  font-family: "Poppins", sans-serif; 
+  color: #2b334a;
+  font-size: 30px;
+  display: inline-block;
+  margin-left: -840px;
+  margin-top: -120px;
+}
+
+.logo-sign-in {
+  max-height: 200px;
+  height: auto;
+  margin-left: -1235px;
+  margin-bottom: -50px;
+}
+
+/* //////////////////////////Sign Up/////////////////////////// */
+
+.sign-up-page {
+  background: linear-gradient(to top, #ffbd6a, #ffd8a9);
+
+}
+
+.sign-up-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 800px;
+  padding: 0 20px;
+  /* margin-top: 25px; */
+  /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  */
+  }
+
+.logo-sign-up {
+  max-height: 200px;
+  height: auto;
+  margin-left: -1235px;
+  margin-bottom: -50px;
+}
+
+.appName-sign-up {
+  font-family: "Poppins", sans-serif; 
+  color: #2b334a;
+  font-size: 30px;
+  display: inline-block;
+  margin-left: -840px;
+  margin-top: -120px;
+}
+
+.sign-up-form {
+  margin-top: px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: -200px;
+  border: 1px;
+  background-color:#ffd8a9;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+  height: 550px;
+}
+
+.sign-up-txt {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 30px;
+  color: #1f222c;
+  margin-top: 10px;
+  margin-bottom: -20px;
+}
