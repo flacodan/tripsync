@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 import NavBar from './Navbar';
+import { MdDeleteOutline } from "react-icons/md";
 
 
 export default function PastTrips(){
@@ -36,29 +37,32 @@ export default function PastTrips(){
     return (
         <>
         <NavBar/>
-          <div className="header-container">
-                <div className="task">Trip</div>
-                <div className="location">Date</div>
-          </div>
-        <div className='top-container'>
-        {pastTripList && (
-            <div className='table-container'>
-                {pastTripList.map((trip) => (
-                    <div
-                        key={trip.trip_id}
-                        id={trip.trip_id}
-                        name={trip.trip_name}
-                        className='row-container'
-                        
-                    >
-                        {/* <div>{trip.trip_complete} Complete</div> */}
-                        <div className='todo'>{trip.trip_name}</div>
-                        <div className='trip'>Date: {trip.trip_start}</div>
-                        <button className="checkbox" onClick={ () => handleDeleteTrip(trip.trip_id)}>X</button>
-                    </div>
-                ))}
+        <div className='page-container'>
+            <div className='page-header'>Past Trips</div>
+            <div className="header-container">
+                <div className="trip-header">Trip</div>
+                <div className="date-header">Date</div>
             </div>
-        )}
+            <div className='top-container'>
+            {pastTripList && (
+                <div className='table-container'>
+                    {pastTripList.map((trip) => (
+                        <div
+                            key={trip.trip_id}
+                            id={trip.trip_id}
+                            name={trip.trip_name}
+                            className='row-container'
+                            
+                        >
+                            {/* <div>{trip.trip_complete} Complete</div> */}
+                            <div className='todo'>{trip.trip_name}</div>
+                            <div className='trip'>Date: {trip.trip_start}</div>
+                            <button className="checkbox" title={`Delete`} onClick={ () => handleDeleteTrip(trip.trip_id)}><MdDeleteOutline /></button>
+                        </div>
+                    ))}
+                </div>
+            )}
+            </div>
         </div>
         </>
     )
