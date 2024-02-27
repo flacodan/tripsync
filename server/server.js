@@ -26,7 +26,6 @@ function loginRequired(req, res, next) {
 
 app.get("/api/getUsersOpenTrips", loginRequired, async (req, res) => {
   const user_id = req.session.user_id;
-  // const user_id = 1; // !!!!!!!!!!!!!!!!!!! Must CHANGE this after login is implemented !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   const user = await User.findByPk(user_id);
   try {
     const response = await user.getTrips({
@@ -65,7 +64,6 @@ app.post("/api/addUserToTrip/:trip_code", loginRequired, async (req, res) => {
 app.post("/api/getTrip", loginRequired, async (req, res) => {
   const user_id = req.session.user_id;
   const { trip_id } = req.body;
-  // const user_id = 1; // !!!!!!!!!!!!!!!!!!! Must CHANGE this after login is implemented !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   const user = await User.findByPk(user_id);
   try {
     const response = await user.getTrips({
@@ -244,8 +242,20 @@ app.post("/api/trips", loginRequired, async (req, res) => {
   }
 });
 
+app.post("/api/tripUpdate/:id", loginRequired, async (req, res) => {
+  const { id } = req.params; // id is the trip_id !!!!
+  const { trip_name, trip_start, trip_complete } = req.body;
+  const trip = await Trip.findByPk(id);
+  trip.set({
+    trip_name: trip_name,
+    trip_start: trip_start,
+    trip_complete: trip_complete,
+  });
+  await trip.save();
+  res.sendStatus(200);
+});
+
 app.post("/api/signUp", async (req, res) => {
-  // console.log('in server ' + JSON.stringify(req.body))
   let newUser = await User.create(req.body);
   res.status(200).send(newUser);
 });
@@ -300,11 +310,6 @@ app.get("/pin-place", loginRequired, async (req, res) => {
   });
   res.send(pins);
 });
-
-// app.post("/logout", loginRequired, async (req, res) => {
-//   req.session.destroy();
-//   res.send({ success: true });
-// });
 
 app.post("/api/logout", async (req, res) => {
   try {
