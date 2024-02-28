@@ -54,25 +54,25 @@
         "trip_id": 6
     },
     {
-        "to_do_name": "make reservation",
+        "to_do_name": "Make reservation",
         "to_do_complete": false,
         "user_id": null,
         "trip_id": 2
     },
     {
-        "to_do_name": "get towels",
+        "to_do_name": "Get towels",
         "to_do_complete": false,
         "user_id": null,
         "trip_id": 2
     },
     {
-        "to_do_name": "order pizza",
+        "to_do_name": "Order pizza",
         "to_do_complete": false,
         "user_id": 1,
         "trip_id": 2
     },
     {
-        "to_do_name": "dance party things",
+        "to_do_name": "Dance party things",
         "to_do_complete": false,
         "user_id": null,
         "trip_id": 2
