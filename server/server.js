@@ -24,6 +24,14 @@ function loginRequired(req, res, next) {
   }
 }
 
+app.get("/api/getUser", async (req, res) => {
+  const user = req.session;
+  // req.session.username = user.username;
+  // req.session.user_id = user.user_id;
+  console.log("in checkSession endpoint " + JSON.stringify(user));
+  res.send(user ? user : false);
+});
+
 app.get("/api/getUsersOpenTrips", loginRequired, async (req, res) => {
   const user_id = req.session.user_id;
   const user = await User.findByPk(user_id);

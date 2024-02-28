@@ -23,6 +23,8 @@ function Home() {
     const map = useRef(null);
 
     useEffect(() => {
+        if(location.state){const { userObj } = location.state;}
+        
         mapboxgl.accessToken = 'pk.eyJ1IjoidHJpcHN5bmMiLCJhIjoiY2xzdGloMGMwMWJtcjJpczNjdmx5ZmY2cyJ9.cjfI8_qhTfgfJty0E-iGGA'; //Don't forget to cancel your mapbox account
 
         const map = new mapboxgl.Map({

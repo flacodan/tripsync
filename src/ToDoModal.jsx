@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { FiCircle, FiCheckCircle } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
-import './ToDoModal.css'
+import './ToDoModal.css';
+import axios from 'axios';
 
 export default function ToDoModal({ todoData, onDelete, onClose, onSaveChanges }) {  
 
@@ -12,9 +13,9 @@ export default function ToDoModal({ todoData, onDelete, onClose, onSaveChanges }
     });
 
     const [isChecked, setIsChecked] = useState(todoData.to_do_complete !== undefined ? todoData.to_do_complete : false);
+    const [currentUser, setCurrentUser] = useState();
 
-
-    const currentUser = {user_id: 1, username: 'Bob'}; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Fix this to use current logged in user !!!!!!!!!!!!!!!!!!!!!!
+    // const currentUser = {user_id: 1, username: 'Bob'};
     
     useEffect(() => {
         setFormData({
@@ -23,6 +24,20 @@ export default function ToDoModal({ todoData, onDelete, onClose, onSaveChanges }
             user_id: todoData.user_id || null,
         });
     }, [todoData]);
+
+    useEffect(() => {
+        getUser()
+    }, []);
+
+    const getUser = async () => {
+        try {
+          const response = await axios.get(`/api/getUser`);
+        //   const { username, user_id } = response.data;
+          setCurrentUser(response.data);
+        } catch (error) {
+          console.error("Error getting session user:", error);
+        }
+    };
 
     const handleToggleChange = () => {
         // console.log("Todo complete was" + isChecked);
