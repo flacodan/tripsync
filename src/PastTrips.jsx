@@ -28,6 +28,7 @@ export default function PastTrips(){
         //trigger modal to confirm deleting the clicked trip
         try {
             const response = await axios.delete(`/api/deleteTrip/${clickedTripId}`)
+            window.location.reload();
         } catch (error) {
             console.error('Error deleting trip');
         };
@@ -42,6 +43,7 @@ export default function PastTrips(){
             <div className="header-container">
                 <div className="trip-header">Trip</div>
                 <div className="date-header">Date</div>
+                <div className="del-header">Delete</div>
             </div>
             <div className='top-container'>
             {pastTripList && (
@@ -52,11 +54,10 @@ export default function PastTrips(){
                             id={trip.trip_id}
                             name={trip.trip_name}
                             className='row-container'
-                            
                         >
                             {/* <div>{trip.trip_complete} Complete</div> */}
                             <div className='todo'>{trip.trip_name}</div>
-                            <div className='trip'>Date: {trip.trip_start}</div>
+                            <div className='trip'>{trip.trip_start}</div>
                             <button className="checkbox" title={`Delete`} onClick={ () => handleDeleteTrip(trip.trip_id)}><MdDeleteOutline /></button>
                         </div>
                     ))}
