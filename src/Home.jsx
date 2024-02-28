@@ -71,9 +71,12 @@ function Home() {
         <>
         <NavBar/>
         <div className='home-container'>
-            {/* <section className="balloon-home1">
+            <section className="balloon-home1">
             <img className='balloon-img-home1' src="../public/appImages/balloon.png" alt="birds" />
-            </section> */}
+            </section>
+            <section className="balloon-home2">
+            <img className='balloon-img-home2' src="../public/appImages/balloon.png" alt="birds" />
+            </section>
             <div className='home-forms-container'>
                 {/* <h2>Welcome username!</h2> */}
                 <section className='map-section'>
@@ -82,7 +85,7 @@ function Home() {
                 </section>
                 <section className='create-trip-section'>
                     {!isCreated ? (
-                        <div className='sign-in-form create-trip-home'>
+                        <div className='create-trip-home'>
                             <h2 className='sign-up-txt ' >Create a Trip</h2>
                             <label className='usernm-txt' htmlFor="tripName">Name your trip:</label>
                             <input id='email' type="text" onChange={(e) => setTripName(e.target.value)}/>
@@ -90,6 +93,7 @@ function Home() {
                             <input id='email' type="date" onChange={(e) => setTripDate(e.target.value)} />
                             <button className='sign-in-submit' onClick={handleSubmit}>Create</button>
                         </div>
+                        
                     ) : (
                         <div className="modal-wrapper">
                             <div className="modal-box">
@@ -104,7 +108,7 @@ function Home() {
                     )}
                 </section>
                 <section className='join-by-code-section'>
-                    <div className='sign-in-form'>
+                    <div className=' join-trip-home'>
                         <h2 className='sign-up-txt'>Join by code</h2>
                         <label className='usernm-txt' htmlFor="inviteCode" >enter your invite code here:</label>
                         <input id='email' value={joinCode} type="text" onChange={(e) => setJoinCode(e.target.value)}/>
