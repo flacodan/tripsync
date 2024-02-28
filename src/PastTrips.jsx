@@ -43,6 +43,7 @@ export default function PastTrips(){
             <div className="header-container">
                 <div className="trip-header">Trip</div>
                 <div className="date-header">Date</div>
+                <div className="del-header">Delete</div>
             </div>
             <div className='top-container'>
             {pastTripList && (
