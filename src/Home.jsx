@@ -98,7 +98,7 @@ function Home() {
                                 <h3>Group members can join using this code:</h3>
                                 <h2>{tripCode}</h2> 
                                 <button className="x" onClick={() => window.location.reload()}>X</button>
-                                {/* <div className="modal-background1"></div> */}
+                                <div className="modal-background1"></div>
                             </div>
                         </div>
                     )}
@@ -108,7 +108,7 @@ function Home() {
                         <h2 className='sign-up-txt'>Join by code</h2>
                         <label className='usernm-txt' htmlFor="inviteCode" >enter your invite code here:</label>
                         <input id='email' value={joinCode} type="text" onChange={(e) => setJoinCode(e.target.value)}/>
-                        <button className='sign-in-submit' onClick={handleJBC}>Join Trip</button> 
+                        <button className='sign-in-submit' onClick={() => { handleJBC(); window.location.reload(); }}>Join Trip</button>
                         {/* <p>{tripCodeJoin}</p> */}
                     </div>
                 </section>

@@ -107,14 +107,14 @@ export default function ToDoModal({ todoData, onDelete, onClose, onSaveChanges }
                     </li>
                     <li className='formLI formLI--row formLI--right'>
                         {/* <div className='me-auto'> */}
-                            {todoData.to_do_id && (
+                            {/* {todoData.to_do_id && ( */}
                                 <>
                                 <button className="sub1" type="submit">Submit</button> 
                                 <button className="d"title={`Delete`} onClick={() => onDelete()}>
                                     <MdDeleteOutline />
                                 </button>
                                 </>
-                            )}
+                            {/* )} */}
                         {/* </div> */}
                     </li>
                 </ul>
