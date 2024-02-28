@@ -2,35 +2,26 @@
     height: 400px;
 }
 
-.modal1 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 2;
-}
-
-.modal-box1 {
+/* .modal-box1 {
     position: absolute;
-    width: 50%;
+    width: 100%;
     min-width: 310px;
     max-width: 700px;
     height: 90%;
     background-color: white;
     border: solid #444444;
-    z-index: 4;
+    z-index: 100;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     padding: 10px;
-}
+} */
 
 .modal-background1 {
     position: fixed;
-    background-color: rgba(9,9,9,0.5);
+    background-color: white;
     backdrop-filter: blur(20px);
-    z-index: 3;
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: 50%;
+    z-index: -20;
 }
