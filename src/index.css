@@ -329,7 +329,13 @@
   width: 400px; 
   height: 35px;
   border-radius: 12px;
+  text-align: center;
+
 }
+
+/* #home-date {
+
+} */
 
 
 .pass-txt {
@@ -352,7 +358,7 @@
   width: 400px; 
   height: 35px;
   border-radius: 12px;
-
+  text-align: center;
 }
 
 .sign-in-submit {
@@ -469,4 +475,8 @@
   color: #1f222c;
   margin-top: 10px;
   margin-bottom: -20px;
+}
+
+.create-trip-home {
+  margin-top: 250px;
 }

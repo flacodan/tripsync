@@ -82,13 +82,13 @@ function Home() {
                 </section>
                 <section className='create-trip-section'>
                     {!isCreated ? (
-                        <div className='create-trip-container'>
-                            <h2>Create a Trip</h2>
-                            <label htmlFor="tripName">Name your trip:</label>
-                            <input id="tripName" type="text" onChange={(e) => setTripName(e.target.value)}/>
-                            <label htmlFor="tripDate">Date:</label>
-                            <input id="tripDate" type="date" onChange={(e) => setTripDate(e.target.value)} />
-                            <button onClick={handleSubmit}>Create</button>
+                        <div className='sign-in-form create-trip-home'>
+                            <h2 className='sign-up-txt ' >Create a Trip</h2>
+                            <label className='usernm-txt' htmlFor="tripName">Name your trip:</label>
+                            <input id='email' type="text" onChange={(e) => setTripName(e.target.value)}/>
+                            <label className='usernm-txt' htmlFor="tripDate">Date:</label>
+                            <input id='email' type="date" onChange={(e) => setTripDate(e.target.value)} />
+                            <button className='sign-in-submit' onClick={handleSubmit}>Create</button>
                         </div>
                     ) : (
                         <div className="modal-wrapper">
@@ -104,11 +104,11 @@ function Home() {
                     )}
                 </section>
                 <section className='join-by-code-section'>
-                    <div className='join-by-code-container'>
-                        <h2>Join by code</h2>
-                        <label htmlFor="inviteCode" >enter your invite code here:</label>
-                        <input value={joinCode} id="inviteCode" type="text" onChange={(e) => setJoinCode(e.target.value)}/>
-                        <button onClick={handleJBC}>Join Trip</button> 
+                    <div className='sign-in-form'>
+                        <h2 className='sign-up-txt'>Join by code</h2>
+                        <label className='usernm-txt' htmlFor="inviteCode" >enter your invite code here:</label>
+                        <input id='email' value={joinCode} type="text" onChange={(e) => setJoinCode(e.target.value)}/>
+                        <button className='sign-in-submit' onClick={handleJBC}>Join Trip</button> 
                         {/* <p>{tripCodeJoin}</p> */}
                     </div>
                 </section>
