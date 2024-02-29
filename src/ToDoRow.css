@@ -8,6 +8,7 @@
     /* border: 1px solid black;  */
     border-radius: 10px;
     font-size: 24px; /* Adjust the value as needed */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
     background-color: #ffd8a9;
     height: 40px;
     width: 70%;
